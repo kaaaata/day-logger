@@ -1,0 +1,22 @@
+.day {
+  margin: 0 auto;
+  padding: 10px; }
+  .day .activities-container {
+    height: 175px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    border-radius: 25px;
+    background-color: #c8e6c8; }
+  .day .no-activities {
+    margin-left: 50px;
+    height: 175px;
+    line-height: 175px;
+    font-size: 72px;
+    color: #aac8aa; }
+  .day .new-activity {
+    text-align: center; }
+  .day .done {
+    width: 100px;
+    height: 100px;
+    border-radius: 15px; }

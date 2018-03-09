@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white; }
+
+a {
+  text-decoration: none;
+  cursor: default;
+  color: black; }
+
+input {
+  font-size: 36px;
+  border-radius: 20px;
+  outline: none; }
+
+button {
+  cursor: pointer;
+  outline: none; }
+
+.link {
+  cursor: pointer; }
+
+.app {
+  width: 100%;
+  font-family: "Noto Sans", sans-serif;
+  text-align: center;
+  cursor: default; }
+
+.X {
+  width: 40px;
+  height: 40px;
+  border-radius: 15px;
+  position: absolute;
+  top: 75px;
+  right: 75px;
+  color: #00b4b4; }

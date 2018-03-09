@@ -1,0 +1,21 @@
+.login {
+  height: 700px;
+  width: 700px;
+  margin: 25px auto; }
+  .login .circle {
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background-color: #00b4b4;
+    text-align: center; }
+    .login .circle .title {
+      font-size: 72px;
+      padding: 100px 0 75px 0; }
+    .login .circle button {
+      width: 100px;
+      height: 50px;
+      border-radius: 15px; }
+    .login .circle div {
+      padding: 5px; }
+    .login .circle label {
+      font-size: 36px; }
