@@ -7,7 +7,9 @@
   .new-activity form {
     display: inline-block; }
   .new-activity input {
-    text-align: center; }
+    text-align: center;
+    border: none;
+    background-color: transparent; }
   .new-activity .date {
     margin: 35px auto 5px auto;
     width: 300px;

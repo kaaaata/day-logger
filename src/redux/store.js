@@ -4,6 +4,7 @@ import * as functions from '../functions';
 import shortid from 'shortid';
 
 const initialState = {
+  activeActivity: { id: null },
   days: [
     { id: shortid.generate(), date: 'March 1, 2018', colors: functions.randomCircleColors(), happiness: 75, productivity: 75,
       activities: [
@@ -27,9 +28,6 @@ const initialState = {
       ],
     },
   ],
-  newActivity: {
-    activity: '', colors: functions.randomCircleColors(), happiness: 75, productivity: 75,
-  },
 };
 
 const reducers = {
@@ -42,33 +40,50 @@ const reducers = {
             { id: shortid.generate(), date: '', activity: '', colors: functions.randomCircleColors(), happiness: 75, productivity: 75 }
           ]}, ...state.days],
         };
-      case 'add_new_activity':
+      case 'add_activity':
+        const id = shortid.generate();
+
         return {
           ...state,
+          activeActivity: { ...state.activeActivity, id },
           days: state.days.map(day => 
-            day.date === action.payload.date
-              ? { ...day, activities: [action.payload, ...day.activities] }
+            day.id === action.payload.id
+              ? { ...day, activities: [{
+                  id, date: day.date, activity: '', colors: functions.randomCircleColors(), happiness: 75, productivity: 75
+              }, ...day.activities] }
               : day),
-          newActivity: { activity: '', colors: functions.randomCircleColors(), happiness: 50, productivity: 50 },
         };
-      case 'update_new_activity':
+      case 'update_activity':
         return {
           ...state,
-          newActivity: { ...state.newActivity,
-            activity: action.payload.activity || state.newActivity.activity,
-            colors: action.payload.colors || state.newActivity.colors,
-            happiness: action.payload.happiness || state.newActivity.happiness,
-            productivity: action.payload.productivity || state.newActivity.productivity,
-          },
+          days: state.days.map(day => (
+            { ...day, activities: day.activities.map(activity => 
+              activity.id === state.activeActivity.id
+                ? { ...activity, 
+                  id: action.payload.id || activity.id,
+                  date: action.payload.date || activity.date,
+                  activity: action.payload.activity || activity.activity,
+                  colors: action.payload.colors || activity.colors,
+                  happiness: action.payload.happiness || activity.happiness,
+                  productivity: action.payload.productivity || activity.productivity,
+                }
+                : activity,
+            )}
+          )),
         };
       case 'update_dates':
         return {
           ...state,
           days: state.days.map(day => 
-            day.date === action.payload.oldDate
-              ? { ...day, date: action.payload.newDate, activities: day.activities.map(activity => (
-                { ...activity, date: action.payload.newDate }))}
+            day.id === action.payload.id
+              ? { ...day, date: action.payload.date, activities: day.activities.map(activity => (
+                { ...activity, date: action.payload.date }))}
               : day),  
+        };
+      case 'update_active_activity':
+        return {
+          ...state,
+          activeActivity: { ...state.activeActivity, id: action.payload.id },
         };
       default:
         return state;
