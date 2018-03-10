@@ -2,7 +2,7 @@
   margin: 0 auto;
   padding: 10px; }
   .day .activities-container {
-    height: 175px;
+    height: 185px;
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;

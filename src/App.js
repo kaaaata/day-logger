@@ -26,10 +26,10 @@ export default withRouter(connect(mapStateToProps)(class App extends Component {
     return (
       <div className="app">
         <Switch>
-          <Route exact path="/" component={() => <Login />} />
-          <Route exact path="/days" component={() => <div><Header /><Days /></div>} />
+          <Route exact path="/" render={() => <Login />} />
+          <Route exact path="/days" render={() => <div><Header /><Days /></div>} />
           {days.map((day, index) => (
-            <Route key={index} exact path={"/day/" + index} component={() => <div><Header /><Day {...day} /></div>} />
+            <Route key={index} exact path={"/day/" + index} render={() => <div><Header /><Day {...day} /></div>} />
           ))}
         </Switch>
       </div>
