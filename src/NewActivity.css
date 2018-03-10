@@ -4,8 +4,12 @@
   border-radius: 50%;
   text-align: center;
   margin: 25px auto; }
+  .new-activity form {
+    display: inline-block; }
+  .new-activity input {
+    text-align: center; }
   .new-activity .date {
-    margin: 50px auto;
+    margin: 35px auto 5px auto;
     width: 300px;
     text-align: center;
     font-size: 48px; }

@@ -1,5 +1,11 @@
 .box {
-  width: 300px;
-  height: 300px;
-  margin: 100px 0 0 300px;
-  background-color: #969696; }
+  width: 158px;
+  height: 158px;
+  border-radius: 25px;
+  margin: 20px auto; }
+  .box .dart {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.5s ease-out; }

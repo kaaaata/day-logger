@@ -7,7 +7,7 @@ import * as functions from './functions';
 import './Days.css';
 
 const mapStateToProps = (state) => ({ days: state.default.days });
-const mapDispatchToProps = (dispatch) => ({ addDay: (day) => dispatch(actions.addDay(day)) });
+const mapDispatchToProps = (dispatch) => ({ addDay: () => dispatch(actions.addDay()) });
 
 export default connect(mapStateToProps, mapDispatchToProps)(class Days extends Component {
   render() {
@@ -15,7 +15,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Days extends C
 
     return (
       <div className="days">
-        <div onClick={() => addDay({ date: '', colors: functions.randomCircleColors(), activities: [] })}>
+        <div onClick={() => addDay()}>
           <div className="new-day">
             <div className="content">
               +New Day

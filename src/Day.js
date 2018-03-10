@@ -6,7 +6,7 @@ import './Day.css';
 
 export default class Day extends Component {
   render() {
-    const { date, colors, activities } = this.props;
+    const { id, date, colors, activities } = this.props;
 
     return (
       <div className="day">
@@ -19,7 +19,7 @@ export default class Day extends Component {
           )}
         </div>
         <div className="new-activity">
-          <NewActivity date={date} />
+          <NewActivity date={date} id={id} />
         </div>
       </div>
     );
