@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import * as actions from './redux/actions';
+import BoxMini from './BoxMini';
 import './Activity.css';
 
 const mapStateToProps = (state) => ({ 
@@ -24,10 +25,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Activity exten
         className="activity"
         style={{ backgroundColor: colors.body, border: `solid ${colors.border}` }}
         onClick={(e) => {
-          if (e.target === e.currentTarget) {
-            console.log('updating active activity');
-            updateActiveActivity({ id });
-          }
+          if (e.target === e.currentTarget) updateActiveActivity({ id });
         }}
       >
         <div
@@ -36,7 +34,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Activity exten
           onMouseOver={() => console.log(days, activeDay.id)}
           onClick={(e) => {
             if (e.target === e.currentTarget && days.filter(day => day.id === activeDay.id)[0].activities.length > 1) {
-              console.log('deleting active activity');
               deleteActivity({ id });
             }
           }}
@@ -46,6 +43,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Activity exten
         <div className="content">
           {activity}
         </div>
+        <BoxMini {...this.props} />
       </div>
     );
   }

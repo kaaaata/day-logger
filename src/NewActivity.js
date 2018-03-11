@@ -20,6 +20,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity ex
     const { activeDay, activeActivity, days, updateDates, updateActivity } = this.props;
     const { id, date, colors, activity, happiness, productivity } = days.filter(day => day.id === activeDay.id)[0]
       .activities.filter(activity => activity.id === activeActivity.id)[0];
+      
     return (
       <div className="new-activity" style={{ backgroundColor: colors.body, border: `solid ${colors.border}` }}>
         <form onSubmit={(e) => e.preventDefault()}>

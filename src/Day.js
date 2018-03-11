@@ -13,12 +13,12 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(null, mapDispatchToProps)(class Day extends Component {
-  componentWillMount() {
-    if (!store.getState().default.activeActivity.id) {
-      this.props.updateActiveActivity({ id: this.props.activities[0].id });
-      console.log('updated active activity id=', this.props.activities[0].id);
-    }
-  }
+  // componentWillMount() {
+  //   if (!store.getState().default.activeActivity.id) {
+  //     this.props.updateActiveActivity({ id: this.props.activities[0].id });
+  //     console.log('updated active activity id=', this.props.activities[0].id);
+  //   }
+  // }
 
   render() {
     const { id, date, colors, activities, addActivity } = this.props;
