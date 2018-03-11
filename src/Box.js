@@ -35,6 +35,22 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Box extends Co
           className="dart"
           style={{ left: happiness, top: productivity, backgroundColor: 'black' }}
         />
+        {[
+          { name: 'smiling.png', top: '-5px', left: '55px' },
+          { name: 'sunglasses.png', top: '-5px', left: '105px' },
+          { name: 'crying.png', top: '-10px', left: '55px' },
+          { name: 'zany.png', top: '-105px', left: '5px' },
+        ].map((emoji, index) => (
+          <div
+            key={index}
+            className="emoji"
+            style={{ 
+              backgroundImage: `url(${require(`./assets/${emoji.name}`)})`,
+              top: emoji.top,
+              left: emoji.left
+            }}
+          ></div>
+        ))}
       </div>
     );
   }

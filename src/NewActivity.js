@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity extends Component {
+  componentWillMount() {
+    console.log(this.props.activeActivity);
+  }
   render() {
     const { dayID, updateDates, updateActivity } = this.props;
     const { id, date, colors, activity, happiness, productivity } = _.flatten(this.props.days.map(day => day.activities))

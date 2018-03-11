@@ -45,13 +45,22 @@ const reducers = {
 
         return {
           ...state,
-          activeActivity: { ...state.activeActivity, id },
+          activeActivity: { id },
           days: state.days.map(day => 
             day.id === action.payload.id
               ? { ...day, activities: [{
                   id, date: day.date, activity: '', colors: functions.randomCircleColors(), happiness: 75, productivity: 75
               }, ...day.activities] }
               : day),
+        };
+      case 'delete_activity':
+        return {
+          ...state,
+          // activeActivity: { id: action.payload.id === state.activeActivity.id ? null : action.payload.id },
+          days: state.days.map(day => (
+            { ...day, activities: day.activities.slice(0, day.activities.length - 1 ) }
+            // day.activities.filter(activity => activity.id !== action.payload.id)
+          ))
         };
       case 'update_activity':
         return {
