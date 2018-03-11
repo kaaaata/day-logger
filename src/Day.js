@@ -41,7 +41,7 @@ export default connect(null, mapDispatchToProps)(class Day extends Component {
           )}
         </div>
         <div className="new-activity">
-          <NewActivity dayID={id} />
+          <NewActivity />
         </div>
       </div>
     );

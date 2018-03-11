@@ -4,6 +4,7 @@ import * as functions from '../functions';
 import shortid from 'shortid';
 
 const initialState = {
+  activeDay: { id: null },
   activeActivity: { id: null },
   days: [
     { id: shortid.generate(), date: 'March 1, 2018', colors: functions.randomCircleColors(), happiness: 75, productivity: 75,
@@ -56,11 +57,13 @@ const reducers = {
       case 'delete_activity':
         return {
           ...state,
-          // activeActivity: { id: action.payload.id === state.activeActivity.id ? null : action.payload.id },
+          activeActivity: { id: action.payload.id === state.activeActivity.id
+            ? state.days.filter(day => day.id === state.activeDay.id)[0].activities.filter(activity => 
+              activity.id !== action.payload.id)[0].id
+            : state.activeActivity.id },
           days: state.days.map(day => (
-            { ...day, activities: day.activities.slice(0, day.activities.length - 1 ) }
-            // day.activities.filter(activity => activity.id !== action.payload.id)
-          ))
+            { ...day, activities: day.activities.filter(activity => activity.id != action.payload.id) }
+          )),
         };
       case 'update_activity':
         return {
@@ -89,10 +92,16 @@ const reducers = {
                 { ...activity, date: action.payload.date }))}
               : day),  
         };
+      case 'update_active_day':
+        return {
+          ...state,
+          activeDay: { id: action.payload.id },
+          activeActivity: { id: state.days.filter(day => day.id === action.payload.id)[0].activities[0].id },
+        };
       case 'update_active_activity':
         return {
           ...state,
-          activeActivity: { ...state.activeActivity, id: action.payload.id },
+          activeActivity: { id: action.payload.id },
         };
       default:
         return state;
