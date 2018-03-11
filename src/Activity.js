@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import * as actions from './redux/actions';
 import BoxMini from './BoxMini';
-import './Activity.css';
+import './styles/Activity.css';
 
 const mapStateToProps = (state) => ({ 
   activeDay: state.default.activeDay,

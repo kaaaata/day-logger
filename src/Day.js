@@ -5,7 +5,7 @@ import * as actions from './redux/actions';
 import store from './redux/store';
 import Activity from './Activity';
 import NewActivity from './NewActivity';
-import './Day.css';
+import './styles/Day.css';
 
 const mapDispatchToProps = (dispatch) => ({
   addActivity: (day) => dispatch(actions.addActivity(day)),

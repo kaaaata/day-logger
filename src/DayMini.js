@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
-import './DayMini.css';
+import './styles/DayMini.css';
 
 const mapDispatchToProps = (dispatch) => ({ updateActiveDay: (day) => dispatch(actions.updateActiveDay(day)) });
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 import DayMini from './DayMini';
 import * as functions from './functions';
-import './Days.css';
+import './styles/Days.css';
 
 const mapStateToProps = (state) => ({ days: state.default.days });
 const mapDispatchToProps = (dispatch) => ({ addDay: () => dispatch(actions.addDay()) });

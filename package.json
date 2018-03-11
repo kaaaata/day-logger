@@ -8,7 +8,7 @@
   "proxy": "http://localhost:3000",
   "scripts": {
     "server-dev": "node server/index.js",
-    "sass-dev": "sass --watch src:src --sourcemap=none",
+    "sass-dev": "sass --watch src:src/styles --sourcemap=none",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

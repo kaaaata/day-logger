@@ -9,7 +9,7 @@ import Login from './Login';
 import Header from './Header';
 import Days from './Days';
 import Day from './Day';
-import './App.css';
+import './styles/App.css';
 
 const mapStateToProps = (state) => ({ days: state.default.days });
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 import _ from 'lodash';
 import Box from './Box';
-import './NewActivity.css';
+import './styles/NewActivity.css';
 
 const mapStateToProps = (state) => ({ 
   activeDay: state.default.activeDay,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './BoxMini.css';
+import './styles/BoxMini.css';
 
 export default class BoxMini extends Component {
   render() {
