@@ -7,18 +7,20 @@ import Activity from './Activity';
 import NewActivity from './NewActivity';
 import './styles/Day.css';
 
+const mapStateToProps = (state) => ({ 
+  activeDay: state.default.activeDay,
+  days: state.default.days,
+});
 const mapDispatchToProps = (dispatch) => ({
   addActivity: (day) => dispatch(actions.addActivity(day)),
   updateActiveActivity: (activity) => dispatch(actions.updateActiveActivity(activity)),
 });
 
-export default connect(null, mapDispatchToProps)(class Day extends Component {
-  // componentWillMount() {
-  //   if (!store.getState().default.activeActivity.id) {
-  //     this.props.updateActiveActivity({ id: this.props.activities[0].id });
-  //     console.log('updated active activity id=', this.props.activities[0].id);
-  //   }
-  // }
+export default connect(mapStateToProps, mapDispatchToProps)(class Day extends Component {
+  componentWillMount() {
+    const { days, activeDay, updateActiveActivity } = this.props;
+    updateActiveActivity({ id: days.filter(day => day.id === activeDay.id)[0].activities[0].id });
+  }
 
   render() {
     const { id, date, colors, activities, addActivity } = this.props;

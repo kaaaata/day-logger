@@ -23,7 +23,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Days extends C
           </div>
         </div>
         {days.map((day, index) => (
-          <Link key={index} className="link" to={"/day/" + index}><DayMini key={index} {...day} /></Link>
+          <DayMini key={index} {...day} />
         ))}
       </div>
     );

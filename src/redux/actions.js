@@ -1,4 +1,5 @@
 export const addDay = () => ({ type: 'add_day', payload: null });
+export const deleteDay = (day) => ({ type: 'delete_day', payload: day });
 export const addActivity = (day) => ({ type: 'add_activity', payload: day });
 export const updateDates = (dates) => ({ type: 'update_dates', payload: dates });
 export const updateActivity = (activity) => ({ type: 'update_activity', payload: activity });

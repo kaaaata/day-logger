@@ -18,9 +18,9 @@ export default class BoxMini extends Component {
           className="emoji"
           style={{
             backgroundImage: `url(${require(`./assets/${
-              happiness < 75
-                ? (productivity < 75 ? 'smiling' : 'sunglasses')
-                : (productivity < 75 ? 'zany' : 'crying')
+              happiness <= 75 // '<=' instead of '<' for optimism - defaults to 'smiling'
+                ? (productivity <= 75 ? 'smiling' : 'sunglasses')
+                : (productivity <= 75 ? 'zany' : 'crying')
             }.png`)})`,
           }}
         ></div>

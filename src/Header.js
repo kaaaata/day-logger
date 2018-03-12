@@ -7,7 +7,7 @@ export default class Header extends Component {
     return (
       <div className="header">
         <Link className="link" to="/"><button>Logout</button></Link>
-        <Link className="link" to="/days"><button>Days</button></Link>
+        <Link className="link" to="/days"><button>Calendar</button></Link>
       </div>
     );
   }

@@ -31,7 +31,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Activity exten
         <div
           className="x"
           style={{ backgroundColor: colors.border, border: `solid ${colors.border}` }}
-          onMouseOver={() => console.log(days, activeDay.id)}
           onClick={(e) => {
             if (e.target === e.currentTarget && days.filter(day => day.id === activeDay.id)[0].activities.length > 1) {
               deleteActivity({ id });
@@ -41,7 +40,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Activity exten
           x
         </div>
         <div className="content">
-          {activity}
+          {activity.length ? activity : 'Blank Activity'}
         </div>
         <BoxMini {...this.props} />
       </div>

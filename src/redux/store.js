@@ -1,5 +1,4 @@
 import { createStore, combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 import * as functions from '../functions';
 import shortid from 'shortid';
 
@@ -33,12 +32,17 @@ const initialState = {
 
 const reducers = {
   default: (state = initialState, action) => {
-    switch (action.type) {      
+    switch (action.type) {
       case 'add_day':
+        const day_ID = shortid.generate();
+        const activity_ID = shortid.generate();
+
         return {
           ...state,
-          days: [{ id: shortid.generate(), date: '', activity: '', colors: functions.randomCircleColors(), happiness: 75, productivity: 75, activities: [
-            { id: shortid.generate(), date: '', activity: '', colors: functions.randomCircleColors(), happiness: 75, productivity: 75 }
+          activeDay: { id: day_ID },
+          activeActivity: { id: activity_ID },
+          days: [{ id: day_ID, date: '', activity: '', colors: functions.randomCircleColors(), happiness: 75, productivity: 75, activities: [
+            { id: activity_ID, date: '', activity: '', colors: functions.randomCircleColors(), happiness: 75, productivity: 75 }
           ]}, ...state.days],
         };
       case 'add_activity':
@@ -53,6 +57,11 @@ const reducers = {
                   id, date: day.date, activity: '', colors: functions.randomCircleColors(), happiness: 75, productivity: 75
               }, ...day.activities] }
               : day),
+        };
+      case 'delete_day':
+        return {
+          ...state,
+          days: state.days.filter(day => day.id !== action.payload.id),
         };
       case 'delete_activity':
         return {

@@ -14,12 +14,6 @@ import './styles/App.css';
 const mapStateToProps = (state) => ({ days: state.default.days });
 
 export default withRouter(connect(mapStateToProps)(class App extends Component {
-  // componentDidMount() {
-  //   console.log(store.getState());
-  //   store.dispatch(actions.addLetter('b'));
-  //   console.log(store.getState());
-  // }
-
   render() {
     const { days } = this.props;
 
@@ -29,7 +23,7 @@ export default withRouter(connect(mapStateToProps)(class App extends Component {
           <Route exact path="/" render={() => <Login />} />
           <Route exact path="/days" render={() => <div><Header /><Days /></div>} />
           {days.map((day, index) => (
-            <Route key={index} exact path={"/day/" + index} render={() => <div><Header /><Day {...day} /></div>} />
+            <Route key={index} exact path={"/day/" + day.id} render={() => <div><Header /><Day {...day} /></div>} />
           ))}
         </Switch>
       </div>

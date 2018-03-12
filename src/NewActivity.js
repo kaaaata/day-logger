@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
+import store from './redux/store';
 import _ from 'lodash';
 import Box from './Box';
 import './styles/NewActivity.css';
@@ -22,7 +23,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity ex
       .activities.filter(activity => activity.id === activeActivity.id)[0];
       
     return (
-      <div className="new-activity" style={{ backgroundColor: colors.body, border: `solid ${colors.border}` }}>
+      <div
+        className="new-activity"
+        style={{ backgroundColor: colors.body, border: `solid ${colors.border}` }}
+      >
         <form onSubmit={(e) => e.preventDefault()}>
           <div className="date">
             <input
