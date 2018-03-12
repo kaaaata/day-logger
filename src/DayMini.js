@@ -31,9 +31,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class DayMini extend
             className="container"
             style={{ backgroundColor: colors.body, border: `solid ${colors.border}` }}
             onClick={(e) => {
-              if (e.target === e.currentTarget) {
-                updateActiveDay({ id });
-              }
+              updateActiveDay({ id });
             }}
           >
             <div className="content">

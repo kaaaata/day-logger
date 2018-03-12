@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 import store from './redux/store';
-import _ from 'lodash';
 import Box from './Box';
 import './styles/NewActivity.css';
 
@@ -19,8 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity extends Component {
   render() {
     const { activeDay, activeActivity, days, updateDates, updateActivity } = this.props;
-    const { id, date, colors, activity, happiness, productivity } = days.filter(day => day.id === activeDay.id)[0]
-      .activities.filter(activity => activity.id === activeActivity.id)[0];
+    const { date, colors, activity } = days.filter(day => day.id === activeDay.id)[0].activities.filter(activity => activity.id === activeActivity.id)[0];
       
     return (
       <div
