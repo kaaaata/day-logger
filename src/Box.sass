@@ -1,11 +1,14 @@
-.box
+%box-dimensions
   width: 158px
   height: 158px
+  
+.box
+  @extend %box-dimensions
   border-radius: 25px
   margin: 20px auto
+  cursor: pointer
   .emoji-grid
-    width: 158px
-    height: 158px
+    @extend %box-dimensions
     margin: -8px 1px //why does the margin have to be like this to stack on top?? so random!!
     display: relative
     display: flex

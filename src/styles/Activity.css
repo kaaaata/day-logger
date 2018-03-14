@@ -3,7 +3,8 @@
   height: 125px;
   border-radius: 50%;
   margin: 25px 0 25px 25px;
-  flex: 0 0 auto; }
+  flex: 0 0 auto;
+  cursor: pointer; }
   .activity .x {
     width: 20px;
     height: 20px;

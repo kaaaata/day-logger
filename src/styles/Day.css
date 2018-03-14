@@ -15,7 +15,8 @@
       margin: 25px 0 25px 25px;
       flex: 0 0 auto;
       background-color: rgba(230, 230, 230, 0.6);
-      border: solid rgba(230, 230, 230, 0.8); }
+      border: solid rgba(230, 230, 230, 0.8);
+      cursor: pointer; }
       .day .activities-container .new-activity .content {
         padding-top: 35px; }
   .day .no-activities {

@@ -45,6 +45,13 @@ const getDaysByUsername = async(username) => await knex('days').where({ username
 // ACTIVITIES
 const getActivitiesByUsername = async(username) => await knex('activities').where({ username }).select();
 
+// SYNCING
+const persistDaysAndActivitiesForUsername = async(username, days, activities) => {
+  await knex('days').where({ username }).del();
+  await knex('days').insert(days);
+  await knex('activities').where({ username }).del();
+  await knex('activities').insert(activities);
+};
 
 module.exports = {
   addDummyData,
@@ -54,4 +61,5 @@ module.exports = {
   newLogin,
   getDaysByUsername,
   getActivitiesByUsername,
+  persistDaysAndActivitiesForUsername,
 };

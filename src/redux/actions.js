@@ -8,3 +8,4 @@ export const updateActiveDay = (day) => ({ type: 'update_active_day', payload: d
 export const updateActiveActivity = (activity) => ({ type: 'update_active_activity', payload: activity });
 export const initializeStore = (username, days, activities) => ({ type: 'initialize_store', payload: { username, days, activities } });
 export const calculateStatistics = () => ({ type: 'calculate_statistics', payload: null });
+export const save = () => ({ type: 'save', payload: null });
