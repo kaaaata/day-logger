@@ -19,8 +19,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity ex
   render() {
     const { activeDay, activeActivity, activities, days, updateDate, updateActivity } = this.props;
     const { date } = days.filter(day => day.id === activeDay.id)[0];
-    console.log(activities);
-    console.log(activeActivity.id);
     const { colors, activity } = activities.filter(activity => activity.id === activeActivity.id)[0];
       
     return (
