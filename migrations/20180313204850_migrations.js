@@ -1,3 +1,4 @@
+// all foreign keys were removed because of some issue preventing updating or deleting
 exports.up = (knex, Promise) => Promise.all([
   knex.schema.createTableIfNotExists('logins', (login) => {
     login.string('username').notNullable().primary();
