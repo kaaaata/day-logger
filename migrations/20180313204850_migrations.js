@@ -9,7 +9,8 @@ exports.up = (knex, Promise) => Promise.all([
     day.string('colors').notNullable(); // stringified object
     day.integer('happiness').notNullable();
     day.integer('productivity').notNullable();
-    day.string('username').references('username').inTable('logins').notNullable().onDelete('cascade');
+    // day.string('username').references('username').inTable('logins').notNullable().onDelete('cascade');
+    day.string('username').notNullable();
   }),
   knex.schema.createTableIfNotExists('activities', (activity) => {
     activity.string('id').notNullable().primary(); // shortid
@@ -17,8 +18,10 @@ exports.up = (knex, Promise) => Promise.all([
     activity.string('colors').notNullable(); // stringified object
     activity.integer('happiness').notNullable();
     activity.integer('productivity').notNullable();
-    activity.string('username').references('username').inTable('logins').notNullable().onDelete('cascade');
-    activity.string('day').references('id').inTable('days').notNullable().onDelete('cascade');
+    // activity.string('username').references('username').inTable('logins').notNullable().onDelete('cascade');
+    // activity.string('day').references('id').inTable('days').notNullable().onDelete('cascade');
+    activity.string('username').notNullable();
+    activity.string('day').notNullable();
   }),
 ]);
   

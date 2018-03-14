@@ -24,15 +24,15 @@ app.get('/addDummyData', async(req, res, next) => {
 });
 app.get('/getAll', async(req, res, next) => {
   const output = await dbHelpers.getAll(); // why is 'getAll' blue in vscode? :(
-  res.status(200).json();
+  res.status(200).json({ output });
 });
 app.get('/validLogin/:username/:password', async(req, res, next) => {
   const output = await dbHelpers.validLogin(req.params.username, req.params.password);
-  res.status(200).json();
+  res.status(200).json({ output });
 });
 app.get('/usernameAvailable/:username', async(req, res, next) => {
   const output = await dbHelpers.usernameAvailable(req.params.username);
-  res.status(200).json();
+  res.status(200).json({ output });
 });
 app.post('/newLogin/:username/:password', async(req, res, next) => {
   const output = await dbHelpers.newLogin(req.params.username, req.params.password);
@@ -40,11 +40,11 @@ app.post('/newLogin/:username/:password', async(req, res, next) => {
 });
 app.get('/getDaysByUsername/:username', async(req, res, next) => {
   const output = await dbHelpers.getDaysByUsername(req.params.username);
-  res.status(200).json();
+  res.status(200).json({ output });
 });
 app.get('/getActivitiesByUsername/:username', async(req, res, next) => {
   const output = await dbHelpers.getActivitiesByUsername(req.params.username);
-  res.status(200).json();
+  res.status(200).json({ output });
 });
 app.post('/persistDaysAndActivitiesForUsername/:username', async(req, res, next) => {
   const output = await dbHelpers.persistDaysAndActivitiesForUsername(req.params.username, req.body.days, req.body.activities);
