@@ -21,7 +21,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class DayMini extend
           <div
             className="container"
             style={{ backgroundColor: colors.body, border: `solid ${colors.border}` }}
-            onClick={(e) => {
+            onClick={(e) => { // don't need e.target === e.currentTarget here because activeDay will be changed onClick anyway
               updateActiveDay({ id });
             }}
           >

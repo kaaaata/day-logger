@@ -29,15 +29,20 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Activity exten
           className="x"
           style={{ backgroundColor: colors.border, border: `solid ${colors.border}` }}
           onClick={(e) => {
-            if (activities.filter(activity => activity.day === activeDay.id).length > 1) deleteActivity({ id });
+            if (e.target === e.currentTarget && activities.filter(activity => activity.day === activeDay.id).length > 1) deleteActivity({ id });
           }}
         >
           x
         </div>
-        <div className="content">
+        <div
+          className="content"
+          onClick={(e) => updateActiveActivity({ id })}
+        >
           {activity.length ? activity : 'Blank Activity'}
         </div>
-        <BoxMini {...this.props} />
+        <div onClick={(e) => updateActiveActivity({ id })}>
+          <BoxMini {...this.props} />
+        </div>
       </div>
     );
   }

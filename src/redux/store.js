@@ -64,11 +64,11 @@ const reducers = {
             : activity),
         };
       case 'update_active_day':
-        return { ...state, saved: false, 
+        return { ...state,
           activeDay: { id: action.payload.id },
         };
       case 'update_active_activity':
-        return { ...state, saved: false, 
+        return { ...state,
           activeActivity: { id: action.payload.id },
         };
       case 'initialize_store':
