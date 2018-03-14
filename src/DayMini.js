@@ -5,10 +5,7 @@ import * as actions from './redux/actions';
 import BoxMini from './BoxMini';
 import './styles/DayMini.css';
 
-const mapStateToProps = (state) => ({ 
-  days: state.default.days,
-  activeDay: state.default.activeDay,
-});
+const mapStateToProps = (state) => ({ activeDay: state.default.activeDay });
 const mapDispatchToProps = (dispatch) => ({
   updateActiveDay: (day) => dispatch(actions.updateActiveDay(day)),
   deleteDay: (day) => dispatch(actions.deleteDay(day)),
@@ -16,16 +13,10 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(class DayMini extends Component {
   render() {
-    const { id, date, colors, activities, happiness, productivity, updateActiveDay, deleteDay, days } = this.props;
+    const { id, date, colors, happiness, productivity, updateActiveDay, deleteDay } = this.props;
 
     return (
-      <div
-        className="day-mini"
-        // onMouseOver={(e) => {
-        //   updateActiveDay({ id });
-        //   console.log('active day: ', this.props.activeDay);
-        // }}
-      >
+      <div className="day-mini">
         <Link className="link" to={"/day/" + id}>
           <div
             className="container"

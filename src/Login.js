@@ -5,7 +5,9 @@ import * as actions from './redux/actions';
 import axios from 'axios';
 import './styles/Login.css';
 
-const mapDispatchToProps = (dispatch) => ({ initializeStore: () => dispatch(actions.initializeStore()) });
+const mapDispatchToProps = (dispatch) => ({
+  initializeStore: (username, days, activities) => dispatch(actions.initializeStore(username, days, activities))
+});
 
 export default connect(null, mapDispatchToProps)(class Login extends Component {
   constructor() {

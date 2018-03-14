@@ -5,24 +5,30 @@ import './styles/Box.css';
 
 const mapStateToProps = (state) => ({ 
   activeActivity: state.default.activeActivity,
-  activeDay: state.default.activeDay, 
-  days: state.default.days
+  activities: state.default.activities,
 });
-const mapDispatchToProps = (dispatch) => ({ updateActivity: (activity) => dispatch(actions.updateActivity(activity)) });
+const mapDispatchToProps = (dispatch) => ({
+  updateActivity: (activity) => dispatch(actions.updateActivity(activity)),
+  calculateStatistics: () => dispatch(actions.calculateStatistics()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(class Box extends Component {
   onBoxClick(e) {
+    const { updateActivity, calculateStatistics } = this.props;
     const x = e.nativeEvent.offsetX - 8;
     const y = e.nativeEvent.offsetY - 8;
 
     // the box is 158px by 158px, the extra 8px is to align the happiness/productivity dart with the cursor pointer tip.
     // it is > 0 instead of >= 0 to avoid some weird glitch with double clicking the dart causing x=0, y=0
-    if (x > 0 && y > 0 && x <= 150 && y <= 150) this.props.updateActivity({ happiness: y, productivity: x });
+    if (x > 0 && y > 0 && x <= 150 && y <= 150) {
+      updateActivity({ happiness: y, productivity: x })
+      calculateStatistics();
+    };
   }
 
   render() {
-    const { activeActivity, activeDay, days, updateActivity } = this.props;
-    const { id, date, colors, activity, happiness, productivity } = days.filter(day => day.id === activeDay.id)[0].activities.filter(activity => activity.id === activeActivity.id)[0];
+    const { activeActivity, activities } = this.props;
+    const { colors, happiness, productivity } = activities.filter(activity => activity.id === activeActivity.id)[0];
 
     return (
       <div

@@ -1,34 +1,34 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
-import store from './redux/store';
 import Activity from './Activity';
 import NewActivity from './NewActivity';
 import './styles/Day.css';
 
 const mapStateToProps = (state) => ({ 
   activeDay: state.default.activeDay,
-  days: state.default.days,
+  activities: state.default.activities,
 });
 const mapDispatchToProps = (dispatch) => ({
-  addActivity: (day) => dispatch(actions.addActivity(day)),
+  addActivity: () => dispatch(actions.addActivity()),
   updateActiveActivity: (activity) => dispatch(actions.updateActiveActivity(activity)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(class Day extends Component {
   componentWillMount() {
-    const { days, activeDay, updateActiveActivity } = this.props;
-    updateActiveActivity({ id: days.filter(day => day.id === activeDay.id)[0].activities[0].id });
+    const { activeDay, updateActiveActivity } = this.props;
+    const activities = this.props.activities.filter(activity => activity.day === activeDay.id);
+    updateActiveActivity({ id: activities.filter(activity => activity.day === activeDay.id)[0].id });
   }
 
   render() {
-    const { id, date, colors, activities, addActivity } = this.props;
+    const { activeDay, addActivity } = this.props;
+    const activities = this.props.activities.filter(activity => activity.day === activeDay.id);
 
     return (
       <div className="day">
         <div className="activities-container">
-          <div onClick={() => addActivity({ id }) }>
+          <div onClick={() => addActivity() }>
             <div className="new-activity">
               <div className="content">
                 +New Activity

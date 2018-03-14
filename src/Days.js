@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 import DayMini from './DayMini';
-import * as functions from './functions';
 import './styles/Days.css';
 
 const mapStateToProps = (state) => ({ days: state.default.days });

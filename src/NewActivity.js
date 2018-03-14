@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
-import store from './redux/store';
 import Box from './Box';
 import './styles/NewActivity.css';
 
 const mapStateToProps = (state) => ({ 
   activeDay: state.default.activeDay,
   activeActivity: state.default.activeActivity,
+  activities: state.default.activities,
   days: state.default.days,
 });
 const mapDispatchToProps = (dispatch) => ({
-  updateDates: (dates) => dispatch(actions.updateDates(dates)),
+  updateDate: (date) => dispatch(actions.updateDate(date)),
   updateActivity: (activity) => dispatch(actions.updateActivity(activity)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity extends Component {
   render() {
-    const { activeDay, activeActivity, days, updateDates, updateActivity } = this.props;
-    const { date, colors, activity } = days.filter(day => day.id === activeDay.id)[0].activities.filter(activity => activity.id === activeActivity.id)[0];
+    const { activeDay, activeActivity, activities, days, updateDate, updateActivity } = this.props;
+    const { date } = days.filter(day => day.id === activeDay.id)[0];
+    console.log(activities);
+    console.log(activeActivity.id);
+    const { colors, activity } = activities.filter(activity => activity.id === activeActivity.id)[0];
       
     return (
       <div
@@ -31,7 +34,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity ex
               className="date"
               value={date}
               placeholder="Today is..."
-              onChange={(e) => updateDates({ id: activeDay.id, date: e.target.value })}
+              onChange={(e) => updateDate({ date: e.target.value })}
             />
           </div>
         </form>

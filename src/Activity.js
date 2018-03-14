@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store from './redux/store';
 import * as actions from './redux/actions';
 import BoxMini from './BoxMini';
 import './styles/Activity.css';
 
 const mapStateToProps = (state) => ({
   activeDay: state.default.activeDay,
-  activeActivity: state.default.activeActivity,
-  days: state.default.days,
+  activities: state.default.activities,
 });
 const mapDispatchToProps = (dispatch) => ({ 
   updateActiveActivity: (activity) => dispatch(actions.updateActiveActivity(activity)),
@@ -17,9 +15,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(class Activity extends Component {
   render() {
-    const {
-      id, date, activity, colors, happiness, productivity, activeDay, days, updateActiveActivity, deleteActivity,
-    } = this.props;
+    const { id, activity, colors, happiness, productivity, activeDay, activities, updateActiveActivity, deleteActivity } = this.props;
 
     return (
       <div
@@ -33,7 +29,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Activity exten
           className="x"
           style={{ backgroundColor: colors.border, border: `solid ${colors.border}` }}
           onClick={(e) => {
-            if (days.filter(day => day.id === activeDay.id)[0].activities.length > 1) deleteActivity({ id });
+            if (activities.filter(activity => activity.day === activeDay.id).length > 1) deleteActivity({ id });
           }}
         >
           x

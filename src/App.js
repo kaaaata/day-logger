@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import store from './redux/store';
-import * as actions from './redux/actions';
-// import Box from './Box';
+// import store from './redux/store';
 import Login from './Login';
 import Header from './Header';
 import Days from './Days';
