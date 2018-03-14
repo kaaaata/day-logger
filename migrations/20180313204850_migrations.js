@@ -18,6 +18,7 @@ exports.up = (knex, Promise) => Promise.all([
     activity.integer('happiness').notNullable();
     activity.integer('productivity').notNullable();
     activity.string('username').references('username').inTable('logins').notNullable();
+    activity.string('day').references('id').inTable('days').notNullable();
   }),
 ]);
   

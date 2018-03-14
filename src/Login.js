@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from './redux/actions';
 import axios from 'axios';
 import './styles/Login.css';
 
-export default class Login extends Component {
+const mapDispatchToProps = (dispatch) => ({ initializeStore: () => dispatch(actions.initializeStore()) });
+
+export default connect(null, mapDispatchToProps)(class Login extends Component {
   constructor() {
     super();
     this.state = {
@@ -28,7 +32,11 @@ export default class Login extends Component {
     const { username, password } = this.state;
     if (username === '' || password === '') return; // for production
     const validLogin = (await axios.get(`/validLogin/${username}/${password}`)).data.output;
-    if (validLogin) this.setState({ redirect: true });
+    if (!validLogin) return;
+    const days = (await axios.get(`/getDaysByUsername/${username}`)).data.output;
+    const activities = (await axios.get(`/getActivitiesByUsername/${username}`)).data.output;
+    this.props.initializeStore(username, days, activities);
+    this.setState({ redirect: true });
   }
 
   render() {
@@ -65,4 +73,4 @@ export default class Login extends Component {
       </div>
     );
   }
-};
+});
