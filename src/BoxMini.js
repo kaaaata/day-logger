@@ -10,10 +10,10 @@ export default class BoxMini extends Component {
         className="box-mini"
         style={{ backgroundColor: colors.body, border: `solid ${colors.border}` }}
       >
-        <div
+        {/* <div
           className="dart"
           style={{ left: ~~(productivity / 4), top: ~~(happiness / 4), backgroundColor: 'black' }}
-        />
+        /> */}
         <div
           className="emoji"
           style={{

@@ -5,9 +5,9 @@
   "author": "Catherine Han",
   "license": "",
   "private": true,
-  "proxy": "http://localhost:3000",
+  "proxy": "http://localhost:3001",
   "scripts": {
-    "server-dev": "node server/index.js",
+    "server-dev": "nodemon --inspect server/index.js",
     "sass-dev": "sass --watch src:src/styles --sourcemap=none",
     "start": "react-scripts start",
     "build": "react-scripts build",
