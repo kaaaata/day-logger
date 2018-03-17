@@ -7,6 +7,7 @@ import Login from './Login';
 import Header from './Header';
 import Days from './Days';
 import Day from './Day';
+import Statistics from './Statistics';
 import './styles/App.css';
 
 const mapStateToProps = (state) => ({ days: state.default.days });
@@ -20,6 +21,7 @@ export default withRouter(connect(mapStateToProps)(class App extends Component {
         <Switch>
           <Route exact path="/" render={() => <Login />} />
           <Route exact path="/days" render={() => <div><Header /><Days /></div>} />
+          <Route exact path="/statistics" render={() => <div><Header /><Statistics /></div>} />
           {days.map((day, index) => (
             <Route key={index} exact path={"/day/" + day.id} render={() => <div><Header /><Day {...day} /></div>} />
           ))}

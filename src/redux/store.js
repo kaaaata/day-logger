@@ -83,12 +83,12 @@ const reducers = {
           days: state.days.map(day => {
             const activities = state.activities.filter(activity => activity.day === day.id);
             return { ...day, 
-              happiness: activities.map(activity => activity.happiness).reduce((a, b) => a + b) / activities.length,
-              productivity: activities.map(activity => activity.productivity).reduce((a, b) => a + b) / activities.length };
+              happiness: ~~(activities.map(activity => activity.happiness).reduce((a, b) => a + b) / activities.length),
+              productivity: ~~(activities.map(activity => activity.productivity).reduce((a, b) => a + b) / activities.length) };
           }),
           statistics: {
-            happiness: { average: state.days.map(day => day.happiness).reduce((a, b) => a + b) / state.activities.length },
-            productivity: { average: state.days.map(day => day.productivity).reduce((a, b) => a + b) / state.activities.length },
+            happiness: ~~({ average: state.days.map(day => day.happiness).reduce((a, b) => a + b) / state.activities.length }),
+            productivity: ~~({ average: state.days.map(day => day.productivity).reduce((a, b) => a + b) / state.activities.length }),
           },
         };
       case 'save':
