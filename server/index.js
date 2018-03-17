@@ -6,6 +6,7 @@ const psqlHelper = require('../database/postgres');
 const db = require('../database/db');
 const dbHelpers = require('../database/index');
 
+// SETUP
 const app = express();
 // app.use(express.static(__dirname + '/../build'));
 // app.use(favicon(__dirname + '/../build/favicon.ico'));
@@ -18,6 +19,7 @@ app.use((req, res, next) => {
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.listen(process.env.PORT || 3001);
 
+// GET
 app.get('/addDummyData', async(req, res, next) => {
   const output = await dbHelpers.addDummyData();
   res.status(200).json();
@@ -34,10 +36,6 @@ app.get('/usernameAvailable/:username', async(req, res, next) => {
   const output = await dbHelpers.usernameAvailable(req.params.username);
   res.status(200).json({ output });
 });
-app.post('/newLogin/:username/:password', async(req, res, next) => {
-  const output = await dbHelpers.newLogin(req.params.username, req.params.password);
-  res.status(201).json();
-});
 app.get('/getDaysByUsername/:username', async(req, res, next) => {
   const output = await dbHelpers.getDaysByUsername(req.params.username);
   res.status(200).json({ output });
@@ -45,6 +43,12 @@ app.get('/getDaysByUsername/:username', async(req, res, next) => {
 app.get('/getActivitiesByUsername/:username', async(req, res, next) => {
   const output = await dbHelpers.getActivitiesByUsername(req.params.username);
   res.status(200).json({ output });
+});
+
+// POST
+app.post('/newLogin/:username/:password', async(req, res, next) => {
+  const output = await dbHelpers.newLogin(req.params.username, req.params.password);
+  res.status(201).json();
 });
 app.post('/persistDaysAndActivitiesForUsername/:username', async(req, res, next) => {
   const output = await dbHelpers.persistDaysAndActivitiesForUsername(req.params.username, req.body.days, req.body.activities);
