@@ -57,7 +57,8 @@ const reducers = {
         return { ...state, saved: false,
           activities: state.activities.map(activity => activity.id === state.activeActivity.id
             ? { ...activity,
-                activity: action.payload.activity || activity.activity,
+                // can't use action.payload.activity || activity.activity for the following line because '' is false
+                activity: action.payload.activity === undefined ? activity.activity : action.payload.activity,
                 happiness: action.payload.happiness || activity.happiness,
                 productivity: action.payload.productivity || activity.productivity,
               }
