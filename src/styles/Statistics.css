@@ -1,10 +1,4 @@
 .statistics {
-  text-align: left;
-  padding-left: 50px; }
-  .statistics .graph-container {
-    width: 600px;
-    height: 300px; }
-  .statistics figure {
-    font-size: 36px; }
-    .statistics figure figcaption {
-      font-size: 24px; }
+  text-align: left; }
+  .statistics select {
+    margin-left: 50px; }

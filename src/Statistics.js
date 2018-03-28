@@ -1,72 +1,77 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { scatterplot } from './functions';
+import Scatterplots from './Scatterplots';
 import './styles/Statistics.css';
 
 const mapStateToProps = (state) => ({
-  days: state.default.days,
-  activities: state.default.activities,
   statistics: state.default.statistics,
 });
 
 export default connect(mapStateToProps)(class Statistics extends Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    const { statistics } = this.props;
+    this.state = {
+      toggle: 'raw',
+      happinessTitle: `Your Happiness (Average ${statistics.happiness.average})`,
+      happinessId: 'happiness-raw',
+      productivityTitle: `Your Productivity (Average ${statistics.productivity.average})`,
+      productivityId: 'productivity-raw',
+    };
+  }
+
+  handleDropdown(e) {
     const { statistics } = this.props;
 
-    const happiness = scatterplot({
-      id: 'happiness',
-      data: statistics.happiness.percentages.map((point, index) => ({ x: index + 1, y: point })),
-      label: 'Happiness Ratings',
-      x: {
-        label: 'Day',
-        min: 0,
-        max: 50,
-        step: 5,
-      },
-      y: {
-        label: 'Happiness (%)',
-        min: 0,
-        max: 100,
-        step: 10,
-      },
-    });
-    const productivity = scatterplot({
-      id: 'productivity',
-      data: statistics.happiness.percentages.map((point, index) => ({ x: index + 1, y: point })),
-      label: 'Productivity Ratings',
-      x: {
-        label: 'Day',
-        min: 0,
-        max: 50,
-        step: 5,
-      },
-      y: {
-        label: 'Productivity (%)',
-        min: 0,
-        max: 100,
-        step: 10,
-      },
-    });
+    if (e.target.value === 'raw') {
+      this.setState({
+        toggle: e.target.value,
+        happinessTitle: `Your Happiness (Average ${statistics.happiness.average})`,
+        happinessId: 'happiness-raw',
+        productivityTitle: `Your Productivity (Average ${statistics.productivity.average})`,
+        productivityId: 'productivity-raw',
+      });
+    } else if (e.target.value === 'lag1') {
+      this.setState({
+        toggle: e.target.value, 
+        happinessTitle: 'Happiness vs. Happiness Lag 1',
+        happinessId: 'happiness-lag1',
+        productivityTitle: 'Productivity vs. Productivity Lag 1',
+        productivityId: 'productivity-lag1',
+      });
+    } else if (e.target.value === 'difference') {
+      this.setState({
+        toggle: e.target.value, 
+        happinessTitle: 'Happiness Differences',
+        happinessId: 'happiness-difference',
+        productivityTitle: 'Productivity Differences',
+        productivityId: 'productivity-difference',
+      });
+    }
   }
 
   render() {
-    const { days, activities, statistics } = this.props;
+    const { toggle, happinessTitle, happinessId, productivityTitle, productivityId } = this.state;
 
     return (
-      <section className="statistics">        
-        <figure>
-          <figcaption>Your Happiness (Average {statistics.happiness.average})</figcaption>
-          <div className="graph-container">
-            <canvas id="happiness"></canvas>
-          </div>  
-        </figure>
-        <figure>
-          <figcaption>Your Productivity (Average {statistics.productivity.average})</figcaption>
-          <div className="graph-container">
-            <canvas id="productivity"></canvas>
-          </div>  
-        </figure>
-      </section>
+      <section className="statistics">
+        <select onChange={(e) => this.handleDropdown(e)}>
+          {[
+            { analysis: 'Raw', toggle: 'raw' },
+            { analysis: 'Lag 1', toggle: 'lag1' },
+            { analysis: 'Differenced', toggle: 'difference' },
+          ].map(dropdown => (
+            <option key={dropdown.analysis} value={dropdown.toggle}>{dropdown.analysis}</option>
+          ))}
+        </select>
+        <Scatterplots
+          toggle={toggle}
+          happinessTitle={happinessTitle}
+          happinessId={happinessId}
+          productivityTitle={productivityTitle}
+          productivityId={productivityId}
+        />
+        </section>
     );
   }
 });

@@ -12,6 +12,8 @@ export const randomCircleColors = () => {
 };
 
 export const scatterplot = (params) => {
+  // uses Chart.js to generate a scatterplot given a short list of parameters
+
   /*
   params = {
     id: 'happiness',
@@ -31,6 +33,7 @@ export const scatterplot = (params) => {
     },
   };
   */
+
   const { id, data, label, x, y } = params;
 
   return new Chart(document.getElementById(id).getContext('2d'), {
