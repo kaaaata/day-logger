@@ -25,9 +25,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity ex
 
     return (
       <div className="header">
-        <button onClick={() => this.onSave()} style={{ borderBottom: saved ? 'none' : '3px solid yellow' }}>Save</button>
+        
         <Link className="link" to="/days"><button>Calendar</button></Link>
         <Link className="link" to="/statistics"><button>Statistics</button></Link>
+        <button onClick={() => this.onSave()} style={{ borderBottom: saved ? 'none' : '3px solid yellow' }}>Save</button>
         <Link className="link" to="/"><button>Logout</button></Link>
       </div>
     );
