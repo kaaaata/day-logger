@@ -9,12 +9,8 @@ const initialState = {
   days: [],
   activities: [],
   statistics: {
-    happiness: {
-      average: null,
-    },
-    productivity: {
-      average: null,
-    },
+    happinesses: [],
+    productivities: [],
   },
   saved: true, // whether redux is saved to psql. impacts yellow highlight on header button 'save'
 };
@@ -87,8 +83,16 @@ const reducers = {
               productivity: ~~(activities.map(activity => activity.productivity).reduce((a, b) => a + b) / activities.length) };
           }),
           statistics: {
-            happiness: ~~({ average: state.days.map(day => day.happiness).reduce((a, b) => a + b) / state.activities.length }),
-            productivity: ~~({ average: state.days.map(day => day.productivity).reduce((a, b) => a + b) / state.activities.length }),
+            happiness: {
+              raw: state.days.map(day => day.happiness),
+              percentages: state.days.map(day => ~~((150 - day.happiness) * 100 / 150) + '%'),
+              average: ~~((150 - state.days.map(day => day.happiness).reduce((a, b) => a + b) / state.days.length) * 100 / 150) + '%'
+            },
+            productivity: {
+              raw: state.days.map(day => day.productivity),
+              percentages: state.days.map(day => ~~((150 - day.productivity) * 100 / 150) + '%'),
+              average: ~~((150 - state.days.map(day => day.productivity).reduce((a, b) => a + b) / state.days.length) * 100 / 150) + '%'
+            }
           },
         };
       case 'save':

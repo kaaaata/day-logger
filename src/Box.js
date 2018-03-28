@@ -9,7 +9,6 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   updateActivity: (activity) => dispatch(actions.updateActivity(activity)),
-  calculateStatistics: () => dispatch(actions.calculateStatistics()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(class Box extends Component {
@@ -23,7 +22,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Box extends Co
       console.log('x = ', x);
       console.log('y = ', y);
       updateActivity({ happiness: y, productivity: x })
-      calculateStatistics();
     };
   }
 

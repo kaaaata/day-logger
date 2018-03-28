@@ -11,7 +11,10 @@ const mapStateToProps = (state) => ({
   activities: state.default.activities.map(activity => ({ ...activity, colors: JSON.stringify(activity.colors) })),
   saved: state.default.saved,
 });
-const mapDispatchToProps = (dispatch) => ({ save: () => dispatch(actions.save()) });
+const mapDispatchToProps = (dispatch) => ({
+  save: () => dispatch(actions.save()),
+  calculateStatistics: () => dispatch(actions.calculateStatistics()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity extends Component {
   async onSave() {
@@ -21,13 +24,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity ex
   }
 
   render() {
-    const { saved } = this.props;
+    const { saved, calculateStatistics } = this.props;
 
     return (
-      <div className="header">
-        
+      <div className="header">        
         <Link className="link" to="/days"><button>Calendar</button></Link>
-        <Link className="link" to="/statistics"><button>Statistics</button></Link>
+        <Link className="link" to="/statistics"><button onClick={() => calculateStatistics()}>Statistics</button></Link>
         <button onClick={() => this.onSave()} style={{ borderBottom: saved ? 'none' : '3px solid yellow' }}>Save</button>
         <Link className="link" to="/"><button>Logout</button></Link>
       </div>
