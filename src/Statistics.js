@@ -11,14 +11,16 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(class Statistics extends Component {
   render() {
     const { days, activities, statistics } = this.props;
+    const happiness = days.map(day => ~~(day.happiness * 100 / 75));
+    const productivity = days.map(day => ~~(day.productivity * 100 / 75));
 
     return (
-      <div className="statistics">
-        Happiness scores for all days: {JSON.stringify(days.map(day => day.happiness))}
-        Productivity scores for all dsys: {JSON.stringify(days.map(day => day.productivity))}
-        Average happiness per day: {statistics.happiness.average}
-        Average productivity per day: {statistics.productivity.average}
-      </div>
+      <section className="statistics">
+        <article>Your happiness across all days: {happiness.map(item => item + '%').join(' - ')}</article>
+        <article>Your productivity across all days: {happiness.map(item => item + '%').join(' - ')}</article>
+        <article>Average happiness: {~~(happiness.reduce((a, b) => a + b) / happiness.length)}%</article>
+        <article>Average productivity: {~~(productivity.reduce((a, b) => a + b) / productivity.length)}%</article>
+      </section>
     );
   }
 });
