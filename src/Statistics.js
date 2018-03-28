@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { scatterplot } from './functions';
 import './styles/Statistics.css';
 
 const mapStateToProps = (state) => ({
@@ -9,15 +10,62 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(class Statistics extends Component {
+  componentDidMount() {
+    const { statistics } = this.props;
+
+    const happiness = scatterplot({
+      id: 'happiness',
+      data: statistics.happiness.percentages.map((point, index) => ({ x: index + 1, y: point })),
+      label: 'Happiness Ratings',
+      x: {
+        label: 'Day',
+        min: 0,
+        max: 50,
+        step: 5,
+      },
+      y: {
+        label: 'Happiness (%)',
+        min: 0,
+        max: 100,
+        step: 10,
+      },
+    });
+    const productivity = scatterplot({
+      id: 'productivity',
+      data: statistics.happiness.percentages.map((point, index) => ({ x: index + 1, y: point })),
+      label: 'Productivity Ratings',
+      x: {
+        label: 'Day',
+        min: 0,
+        max: 50,
+        step: 5,
+      },
+      y: {
+        label: 'Productivity (%)',
+        min: 0,
+        max: 100,
+        step: 10,
+      },
+    });
+  }
+
   render() {
     const { days, activities, statistics } = this.props;
 
     return (
-      <section className="statistics">
-        <article>Happiness across all days: <figure>{statistics.happiness.percentages.join(' - ')}</figure></article>
-        <article>Productivity across all days: <figure>{statistics.productivity.percentages.join(' - ')}</figure></article>
-        <article>Average happiness: <figure>{statistics.happiness.average}</figure></article>
-        <article>Average productivity: <figure>{statistics.productivity.average}</figure></article>
+      <section className="statistics">        
+        <figure>
+          <figcaption>Your Happiness (Average {statistics.happiness.average})</figcaption>
+          <div className="graph-container">
+            <canvas id="happiness"></canvas>
+          </div>  
+        </figure>
+        <figure>
+          <figcaption>Your Productivity (Average {statistics.productivity.average})</figcaption>
+          <div className="graph-container">
+            <canvas id="productivity"></canvas>
+          </div>  
+        </figure>
       </section>
     );
   }

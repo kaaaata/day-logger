@@ -85,12 +85,12 @@ const reducers = {
           statistics: {
             happiness: {
               raw: state.days.map(day => day.happiness),
-              percentages: state.days.map(day => ~~((150 - day.happiness) * 100 / 150) + '%'),
+              percentages: state.days.map(day => ~~((150 - day.happiness) * 100 / 150)),
               average: ~~((150 - state.days.map(day => day.happiness).reduce((a, b) => a + b) / state.days.length) * 100 / 150) + '%'
             },
             productivity: {
               raw: state.days.map(day => day.productivity),
-              percentages: state.days.map(day => ~~((150 - day.productivity) * 100 / 150) + '%'),
+              percentages: state.days.map(day => ~~((150 - day.productivity) * 100 / 150)),
               average: ~~((150 - state.days.map(day => day.productivity).reduce((a, b) => a + b) / state.days.length) * 100 / 150) + '%'
             }
           },

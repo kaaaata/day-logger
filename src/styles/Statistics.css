@@ -1,6 +1,10 @@
 .statistics {
   text-align: left;
   padding-left: 50px; }
-  .statistics article figure {
-    font-size: 36px;
-    font-weight: bold; }
+  .statistics .graph-container {
+    width: 600px;
+    height: 300px; }
+  .statistics figure {
+    font-size: 36px; }
+    .statistics figure figcaption {
+      font-size: 24px; }
