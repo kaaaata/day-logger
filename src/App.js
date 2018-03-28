@@ -10,7 +10,9 @@ import Day from './Day';
 import Statistics from './Statistics';
 import './styles/App.css';
 
-const mapStateToProps = (state) => ({ days: state.default.days });
+const mapStateToProps = (state) => ({
+  days: state.default.days,
+});
 
 export default withRouter(connect(mapStateToProps)(class App extends Component {
   render() {

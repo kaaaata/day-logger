@@ -6,7 +6,7 @@ import axios from 'axios';
 import './styles/Login.css';
 
 const mapDispatchToProps = (dispatch) => ({
-  initializeStore: (username, days, activities) => dispatch(actions.initializeStore(username, days, activities))
+  initializeStore: (username, days, activities) => dispatch(actions.initializeStore(username, days, activities)),
 });
 
 export default connect(null, mapDispatchToProps)(class Login extends Component {

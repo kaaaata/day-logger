@@ -4,8 +4,12 @@ import * as actions from './redux/actions';
 import DayMini from './DayMini';
 import './styles/Days.css';
 
-const mapStateToProps = (state) => ({ days: state.default.days });
-const mapDispatchToProps = (dispatch) => ({ addDay: () => dispatch(actions.addDay()) });
+const mapStateToProps = (state) => ({
+  days: state.default.days,
+});
+const mapDispatchToProps = (dispatch) => ({
+  addDay: () => dispatch(actions.addDay()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(class Days extends Component {
   render() {

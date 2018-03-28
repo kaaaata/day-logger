@@ -5,7 +5,9 @@ import * as actions from './redux/actions';
 import BoxMini from './BoxMini';
 import './styles/DayMini.css';
 
-const mapStateToProps = (state) => ({ activeDay: state.default.activeDay });
+const mapStateToProps = (state) => ({
+  activeDay: state.default.activeDay,
+});
 const mapDispatchToProps = (dispatch) => ({
   updateActiveDay: (day) => dispatch(actions.updateActiveDay(day)),
   deleteDay: (day) => dispatch(actions.deleteDay(day)),
