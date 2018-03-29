@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(class Box extends Component {
   onBoxClick(e) {
-    const { updateActivity, calculateStatistics } = this.props;
+    const { updateActivity } = this.props;
     const x = e.nativeEvent.offsetX - 8;
     const y = e.nativeEvent.offsetY - 8;
     // the box is 158px by 158px, the extra 8px is to align the happiness/productivity dart with the cursor pointer tip.
