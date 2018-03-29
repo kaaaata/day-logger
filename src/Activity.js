@@ -18,14 +18,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Activity exten
     const { id, activity, colors, happiness, productivity, activeDay, activities, updateActiveActivity, deleteActivity } = this.props;
 
     return (
-      <div
+      <section
         className="activity"
         style={{ backgroundColor: colors.body, border: `solid ${colors.border}` }}
         onClick={(e) => {
           if (e.target === e.currentTarget) updateActiveActivity({ id });
         }}
       >
-        <div
+        <article
           className="x"
           style={{ backgroundColor: colors.border, border: `solid ${colors.border}` }}
           onClick={(e) => {
@@ -33,17 +33,17 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Activity exten
           }}
         >
           x
-        </div>
-        <div
+        </article>
+        <article
           className="content"
           onClick={(e) => updateActiveActivity({ id })}
         >
           {activity.length ? activity : 'Blank Activity'}
-        </div>
-        <div onClick={(e) => updateActiveActivity({ id })}>
+        </article>
+        <article onClick={(e) => updateActiveActivity({ id })}>
           <BoxMini {...this.props} />
-        </div>
-      </div>
+        </article>
+      </section>
     );
   }
 });
