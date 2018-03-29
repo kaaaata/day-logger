@@ -18,7 +18,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class DayMini extend
     const { id, date, colors, happiness, productivity, updateActiveDay, deleteDay } = this.props;
 
     return (
-      <div className="day-mini">
+      <section className="day-mini">
         <Link className="link" to={"/day/" + id}>
           <div
             className="container"
@@ -27,13 +27,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(class DayMini extend
               updateActiveDay({ id });
             }}
           >
-            <div className="content">
+            <article className="content">
               {date.length ? date : 'A New Day'}
-            </div>
+            </article>
             <BoxMini {...this.props} />
           </div>
         </Link>
-        <div
+        <article
           className="x"
           style={{ backgroundColor: colors.border, border: `solid ${colors.border}` }}
           onClick={(e) => {
@@ -43,8 +43,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(class DayMini extend
           }}
         >
           x
-        </div>
-      </div>
+        </article>
+      </section>
     );
   }
 });
