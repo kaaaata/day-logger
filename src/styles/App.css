@@ -28,4 +28,5 @@ button {
 .app {
   font-family: "Noto Sans", sans-serif;
   text-align: center;
-  cursor: default; }
+  cursor: default;
+  min-width: 750px; }

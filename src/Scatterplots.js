@@ -49,14 +49,14 @@ export default connect(mapStateToProps)(class Statistics extends Component {
         data: happiness.slice(1).map((point, index) => ({ x: index + 1, y: happiness[index + 1] - happiness[index] })),
         label: 'Happiness Ratings Differences',
         x: { label: 'Day', min: 0, max: 50, step: 5 },
-        y: { label: 'Happiness Differences (%)', min: -100, max: 100, step: 20 },
+        y: { label: 'Happiness Differences T1-T0 (%)', min: -100, max: 100, step: 20 },
       });
       const productivityDifference = scatterplot({
         id: 'productivity-difference',
         data: productivity.slice(1).map((point, index) => ({ x: index + 1, y: productivity[index + 1] - productivity[index] })),
         label: 'Productivity Ratings Differences',
         x: { label: 'Day', min: 0, max: 50, step: 5 },
-        y: { label: 'Productivity Differences (%)', min: -100, max: 100, step: 20 },
+        y: { label: 'Productivity Differences T1-T0 (%)', min: -100, max: 100, step: 20 },
       });
     }
   }
@@ -76,15 +76,11 @@ export default connect(mapStateToProps)(class Statistics extends Component {
       <section className="scatterplots">
         <figure>
           <figcaption>{happinessTitle}</figcaption>
-          <div className="graph-container">
-            <canvas id={happinessId}></canvas>
-          </div>  
+          <canvas id={happinessId}></canvas>
         </figure>
         <figure>
           <figcaption>{productivityTitle}</figcaption>
-          <div className="graph-container">
-            <canvas id={productivityId}></canvas>
-          </div>  
+          <canvas id={productivityId}></canvas>
         </figure>
       </section>
     );

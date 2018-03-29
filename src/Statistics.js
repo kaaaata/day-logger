@@ -55,15 +55,17 @@ export default connect(mapStateToProps)(class Statistics extends Component {
 
     return (
       <section className="statistics">
-        <select onChange={(e) => this.handleDropdown(e)}>
-          {[
-            { analysis: 'Raw', toggle: 'raw' },
-            { analysis: 'Lag 1', toggle: 'lag1' },
-            { analysis: 'Differenced', toggle: 'difference' },
-          ].map(dropdown => (
-            <option key={dropdown.analysis} value={dropdown.toggle}>{dropdown.analysis}</option>
-          ))}
-        </select>
+        <article className="dropdown">
+          Data Type: <select onChange={(e) => this.handleDropdown(e)}>
+            {[
+              { analysis: 'Raw', toggle: 'raw' },
+              { analysis: 'Lag 1', toggle: 'lag1' },
+              { analysis: 'Differenced', toggle: 'difference' },
+            ].map(dropdown => (
+              <option key={dropdown.analysis} value={dropdown.toggle}>{dropdown.analysis}</option>
+            ))}
+          </select>
+        </article>
         <Scatterplots
           toggle={toggle}
           happinessTitle={happinessTitle}

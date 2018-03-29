@@ -1,4 +1,8 @@
 .statistics {
-  text-align: left; }
-  .statistics select {
-    margin-left: 50px; }
+  text-align: center; }
+  .statistics .dropdown {
+    font-size: 24px; }
+    .statistics .dropdown select {
+      outline: none;
+      font-size: 24px;
+      box-shadow: 1px 1px 1px grey; }

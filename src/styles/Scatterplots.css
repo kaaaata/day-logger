@@ -1,10 +1,13 @@
-.scatterplots {
-  text-align: left;
-  padding-left: 50px; }
-  .scatterplots .graph-container {
-    width: 600px;
-    height: 300px; }
-  .scatterplots figure {
-    font-size: 36px; }
-    .scatterplots figure figcaption {
-      font-size: 24px; }
+.scatterplots figure {
+  width: 600px;
+  height: 300px; }
+
+.scatterplots figure {
+  display: block;
+  margin: 25px auto 50px auto;
+  font-size: 36px; }
+  .scatterplots figure figcaption {
+    font-size: 24px; }
+  .scatterplots figure canvas {
+    display: block;
+    margin: auto; }

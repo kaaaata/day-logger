@@ -1,10 +1,15 @@
+%graph-dimensions
+  width: 600px
+  height: 300px  
+
 .scatterplots
-  text-align: left
-  padding-left: 50px
-  .graph-container
-    width: 600px
-    height: 300px
   figure
+    @extend %graph-dimensions
+    display: block
+    margin: 25px auto 50px auto
     font-size: 36px
     figcaption
       font-size: 24px
+    canvas
+      display: block
+      margin: auto
