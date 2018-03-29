@@ -26,27 +26,27 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Box extends Co
     const { colors, happiness, productivity } = activities.filter(activity => activity.id === activeActivity.id)[0];
 
     return (
-      <div
+      <section
         className="box"
         onClick={(e) => this.onBoxClick(e)}
         style={{ backgroundColor: colors.body, border: `solid ${colors.border}` }}
       >
-        <div
+        <article
           className="dart"
           style={{ left: productivity, top: happiness, backgroundColor: 'black' }}
         />
-        <div className="emoji-grid">
+        <article className="emoji-grid">
           {['smiling', 'dizzy', 'zany', 'crying'].map((emoji, index) => (
             <div key={index} className="emoji-container">
               <div
                 key={index}
                 className="emoji"
                 style={{ backgroundImage: `url(${require(`./assets/${emoji}.png`)})` }}
-              ></div>
+              />
             </div>
           ))}
-        </div>
-      </div>
+        </article>
+      </section>
     );
   }
 });

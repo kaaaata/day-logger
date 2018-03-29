@@ -22,19 +22,19 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity ex
     const { colors, activity } = activities.filter(activity => activity.id === activeActivity.id)[0];
       
     return (
-      <div
+      <section
         className="new-activity"
         style={{ backgroundColor: colors.body, border: `solid ${colors.border}` }}
       >
         <form onSubmit={(e) => e.preventDefault()}>
-          <div className="date">
+          <article className="date">
             <input
               className="date"
               value={date}
               placeholder="Today is..."
               onChange={(e) => updateDate({ date: e.target.value })}
             />
-          </div>
+          </article>
         </form>
         <form onSubmit={(e) => e.preventDefault()}>
           <input
@@ -45,7 +45,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity ex
           />
           <Box />
         </form>
-      </div>
+      </section>
     );
   }
 });

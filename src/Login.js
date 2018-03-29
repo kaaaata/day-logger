@@ -43,36 +43,36 @@ export default connect(null, mapDispatchToProps)(class Login extends Component {
 
   render() {
     return (
-      <div className="login">
+      <section className="login">
         <form onSubmit={(e) => this.handleSubmit(e)}>        
-          <div className="circle">
-            <div className="title">Cat's<br />Day Logger</div>
-            <div>
+          <section className="circle">
+            <article className="title">Cat's<br />Day Logger</article>
+            <article>
               <label>Username</label>&nbsp;&nbsp;&nbsp;&nbsp;
               <input
                 value={this.state.username}
                 placeholder="Username"
                 onChange={(e) => this.setState({ username: e.target.value })}
               />
-            </div>
-            <div>
+            </article>
+            <article>
               <label>Password</label>&nbsp;&nbsp;&nbsp;&nbsp;
               <input
                 value={this.state.password}
                 placeholder="Password"
                 onChange={(e) => this.setState({ password: e.target.value })}
               />
-            </div>
-            <div>
+            </article>
+            <article>
               <button type="button" onClick={() => this.newLogin()}>New Login</button>
               {this.state.redirect
                 ? <Redirect to="/days" />
                 : <button type="submit">Login</button>
               }
-            </div>
-          </div>
+            </article>
+          </section>
         </form>
-      </div>
+      </section>
     );
   }
 });

@@ -16,18 +16,18 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Days extends C
     const { days, addDay } = this.props;
 
     return (
-      <div className="days">
-        <div onClick={() => addDay()}>
+      <section className="days">
+        <article onClick={() => addDay()}>
           <div className="new-day">
             <div className="content">
               +New Day
             </div>
           </div>
-        </div>
+        </article>
         {days.map((day, index) => (
           <DayMini key={index} {...day} />
         ))}
-      </div>
+      </section>
     );
   }
 });

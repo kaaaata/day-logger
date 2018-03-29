@@ -6,15 +6,15 @@ export default class BoxMini extends Component {
     const { colors, happiness, productivity } = this.props;
 
     return (
-      <div
+      <section
         className="box-mini"
         style={{ backgroundColor: colors.body, border: `solid ${colors.border}` }}
       >
-        {/* <div
+        {/* <article
           className="dart"
           style={{ left: ~~(productivity / 4), top: ~~(happiness / 4), backgroundColor: 'black' }}
         /> */}
-        <div
+        <article
           className="emoji"
           style={{
             backgroundImage: `url(${require(`./assets/${
@@ -23,8 +23,8 @@ export default class BoxMini extends Component {
                 : (productivity <= 75 ? 'zany' : 'crying')
             }.png`)})`,
           }}
-        ></div>
-      </div>
+        />
+      </section>
     );
   }
 };
