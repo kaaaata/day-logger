@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 import DayMini from './DayMini';
-import './styles/Days.css';
+import './styles/Calendar.css';
 
 const mapStateToProps = (state) => ({
   days: state.default.days,
@@ -16,7 +16,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Days extends C
     const { days, addDay } = this.props;
 
     return (
-      <section className="days">
+      <section className="calendar">
         <article onClick={() => addDay()}>
           <div className="new-day">
             <div className="content">
