@@ -1,7 +1,14 @@
 .statistics {
-  text-align: center; }
+  text-align: center;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  grid-gap: 10px; }
   .statistics .dropdown {
-    font-size: 24px; }
+    grid-column: 1/span 1;
+    font-size: 24px;
+    padding: 10px 0;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.5); }
     .statistics .dropdown select {
       outline: none;
       font-size: 24px;

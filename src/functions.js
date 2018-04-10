@@ -54,6 +54,7 @@ export const scatterplot = (params) => {
         }]
       },
       options: {
+        responsive: false,
         scales: {
           xAxes: [{
             scaleLabel: {

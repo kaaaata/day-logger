@@ -1,13 +1,13 @@
-.scatterplots figure {
-  width: 625px;
-  height: 335px; }
-
-.scatterplots figure {
-  display: block;
-  margin: 10px auto;
-  font-size: 36px; }
-  .scatterplots figure figcaption {
-    font-size: 24px; }
-  .scatterplots figure canvas {
-    display: block;
-    margin: auto; }
+.scatterplots {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-gap: 10px; }
+  .scatterplots figure {
+    padding: 10px 0;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.5); }
+    .scatterplots figure figcaption {
+      font-size: 24px; }
+    .scatterplots figure canvas {
+      display: block;
+      margin: auto; }

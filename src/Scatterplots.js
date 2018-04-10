@@ -27,9 +27,9 @@ export default connect(mapStateToProps)(class Statistics extends Component {
 
     // need to remove old chart canvas before drawing new chart to avoid mouseover glitches
     document.getElementById('happiness-canvas').innerHTML = '&nbsp;';
-    document.getElementById('happiness-canvas').innerHTML = `<canvas id=${this.props.happinessId}></canvas>`;
+    document.getElementById('happiness-canvas').innerHTML = `<canvas id=${this.props.happinessId} width="750" height="250"></canvas>`;
     document.getElementById('productivity-canvas').innerHTML = '&nbsp;';
-    document.getElementById('productivity-canvas').innerHTML = `<canvas id=${this.props.productivityId}></canvas>`;
+    document.getElementById('productivity-canvas').innerHTML = `<canvas id=${this.props.productivityId} width="750" height="250"></canvas>`;
     
     if (toggle === 'raw') {
       scatterplot({
@@ -86,15 +86,11 @@ export default connect(mapStateToProps)(class Statistics extends Component {
   }
 
   componentDidMount() {
-    console.log('rendering: ', this.props.toggle);
     this.renderGraphs();
-    console.log('rendered: ', this.props.toggle);
   }
 
   componentDidUpdate() {
-    console.log('rendering: ', this.props.toggle);
     this.renderGraphs();
-    console.log('rendered: ', this.props.toggle);
   }
 
   render() {
@@ -104,11 +100,11 @@ export default connect(mapStateToProps)(class Statistics extends Component {
       <section className="scatterplots">
         <figure>
           <figcaption>{happinessTitle}</figcaption>
-          <div id="happiness-canvas"><canvas id={happinessId}></canvas></div>
+          <div id="happiness-canvas"><canvas id={happinessId} width="750" height="250"></canvas></div>
         </figure>
         <figure>
           <figcaption>{productivityTitle}</figcaption>
-          <div id="productivity-canvas"><canvas id={productivityId}></canvas></div>
+          <div id="productivity-canvas"><canvas id={productivityId} width="750" height="250"></canvas></div>
         </figure>
       </section>
     );

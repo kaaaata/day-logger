@@ -1,7 +1,9 @@
-body {
+* {
   margin: 0;
-  padding: 0;
-  background-color: #f5ffff; }
+  padding: 0; }
+
+html {
+  background-image: url("../assets/blue.jpg"); }
 
 a {
   text-decoration: none;
@@ -17,10 +19,7 @@ input {
 button {
   cursor: pointer;
   outline: none;
-  background-color: #ccebeb;
   border: none; }
-  button:hover {
-    background-color: #d6f5f5; }
 
 .link {
   cursor: pointer; }
@@ -29,4 +28,5 @@ button {
   font-family: "Noto Sans", sans-serif;
   text-align: center;
   cursor: default;
-  min-width: 750px; }
+  width: 1000px;
+  margin: 0 auto; }

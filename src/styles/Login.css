@@ -1,7 +1,8 @@
 .login {
   height: 700px;
   width: 700px;
-  margin: 25px auto; }
+  padding: 25px;
+  margin: auto; }
   .login .circle {
     width: 700px;
     height: 700px;

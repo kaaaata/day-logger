@@ -17,6 +17,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity extends Component {
+  constructor() {
+    super();
+    this.state = {
+      title: 'Calendar',
+    };
+  }
+
   async onSave() {
     const { activeUsername, days, activities, save } = this.props;
     await axios.post(`/persistDaysAndActivitiesForUsername/${activeUsername}`, { days, activities });
@@ -25,13 +32,34 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity ex
 
   render() {
     const { saved, calculateStatistics } = this.props;
+    const { title } = this.state;
 
     return (
-      <section className="header">        
-        <Link className="link" to="/days"><button>Calendar</button></Link>
-        <Link className="link" to="/statistics"><button onClick={() => calculateStatistics()}>Statistics</button></Link>
-        <button onClick={() => this.onSave()} style={{ borderBottom: saved ? 'none' : '3px solid yellow' }}>Save</button>
-        <Link className="link" to="/"><button>Logout</button></Link>
+      <section className="header">
+        <article className="title">
+          <u>{title}</u>
+        </article>
+        <article>
+          <Link className="link" to="/days">
+            <button onClick={() => this.setState({ title: 'Calendar' })}>Calendar</button>
+          </Link>
+        </article>
+        <article>
+          <Link className="link" to="/statistics">
+            <button onClick={() => {
+              this.setState({ title: 'Statistics' });
+              calculateStatistics();
+            }}>Statistics</button>
+          </Link>
+        </article>
+        <article>
+          <button onClick={() => this.onSave()} style={{ border: saved ? 'solid rgb(180, 200, 200)' : 'solid yellow' }}>Save</button>
+        </article>
+        <article>
+          <Link className="link" to="/">
+            <button>Logout</button>
+          </Link>
+        </article>
       </section>
     );
   }
