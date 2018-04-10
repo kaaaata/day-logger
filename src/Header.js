@@ -53,7 +53,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity ex
           </Link>
         </article>
         <article>
-          <button onClick={() => this.onSave()} style={{ border: saved ? 'solid rgb(180, 200, 200)' : 'solid yellow' }}>Save</button>
+          <button onClick={() => this.onSave()} style={{ border: saved ? 'none' : 'solid yellow' }}>Save</button>
         </article>
         <article>
           <Link className="link" to="/">
