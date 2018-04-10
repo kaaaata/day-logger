@@ -15,7 +15,7 @@ export const scatterplot = (params) => {
   // uses Chart.js to generate a scatterplot given a short list of parameters
 
   /*
-  params = {
+  params.happiness & params.productivity = {
     id: 'happiness',
     data: [{ x: #, y: # }, ... ],
     label: 'Happiness Ratings',
@@ -34,51 +34,55 @@ export const scatterplot = (params) => {
   };
   */
 
-  const { id, data, label, x, y } = params;
-
-  return new Chart(document.getElementById(id).getContext('2d'), {
-    type: 'scatter',
-    data: {
-      datasets: [{
-        label,
-        data,
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-        ],
-      }]
-    },
-    options: {
-      scales: {
-        xAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: x.label,
-          },
-          type: 'linear',
-          position: 'bottom',
-          ticks: {
-            min: x.min,
-            max: x.max,
-            stepSize: x.step,
-          },
-        }],
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: y.label,
-          },
-          type: 'linear',
-          position: 'left',
-          ticks: {
-            min: y.min,
-            max: y.max,
-            stepSize: y.step,
-          },
-        }],
+  let happinessChart;
+  let productivityChart;
+  
+  [happinessChart, productivityChart].forEach((chart, index) => {
+    const { id, data, label, x, y } = index === 0 ? params.happiness : params.productivity;
+    chart = new Chart(document.getElementById(id).getContext('2d'), {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label,
+          data,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+          ],
+        }]
       },
-    },
-  });
+      options: {
+        scales: {
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: x.label,
+            },
+            type: 'linear',
+            position: 'bottom',
+            ticks: {
+              min: x.min,
+              max: x.max,
+              stepSize: x.step,
+            },
+          }],
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: y.label,
+            },
+            type: 'linear',
+            position: 'left',
+            ticks: {
+              min: y.min,
+              max: y.max,
+              stepSize: y.step,
+            },
+          }],
+        },
+      },
+    });  
+  })
 };

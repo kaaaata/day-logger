@@ -24,62 +24,77 @@ export default connect(mapStateToProps)(class Statistics extends Component {
     // dynamic x-axis max value and step size depending on number of days
     const max = this.nextMultipleOf10(days.length);
     const step = days.length <= 10 ? 1 : (days.length <= 50 ? 5 : 10);
+
+    // need to remove old chart canvas before drawing new chart to avoid mouseover glitches
+    document.getElementById('happiness-canvas').innerHTML = '&nbsp;';
+    document.getElementById('happiness-canvas').innerHTML = `<canvas id=${this.props.happinessId}></canvas>`;
+    document.getElementById('productivity-canvas').innerHTML = '&nbsp;';
+    document.getElementById('productivity-canvas').innerHTML = `<canvas id=${this.props.productivityId}></canvas>`;
     
     if (toggle === 'raw') {
-      const happinessRaw = scatterplot({
-        id: 'happiness-raw',
-        data: happiness.map((point, index) => ({ x: index + 1, y: point })),
-        label: 'Happiness Ratings',
-        x: { label: 'Day', min: 0, max, step },
-        y: { label: 'Happiness (%)', min: 0, max: 100, step: 10 },
-      });
-      const productivityRaw = scatterplot({
-        id: 'productivity-raw',
-        data: productivity.map((point, index) => ({ x: index + 1, y: point })),
-        label: 'Productivity Ratings',
-        x: { label: 'Day', min: 0, max, step },
-        y: { label: 'Productivity (%)', min: 0, max: 100, step: 10 },
+      scatterplot({
+        happiness: {
+          id: 'happiness-raw',
+          data: happiness.map((point, index) => ({ x: index + 1, y: point })),
+          label: 'Happiness Ratings',
+          x: { label: 'Day', min: 0, max, step },
+          y: { label: 'Happiness (%)', min: 0, max: 100, step: 10 },
+        },
+        productivity: {
+          id: 'productivity-raw',
+          data: productivity.map((point, index) => ({ x: index + 1, y: point })),
+          label: 'Productivity Ratings',
+          x: { label: 'Day', min: 0, max, step },
+          y: { label: 'Productivity (%)', min: 0, max: 100, step: 10 },
+        },
       });
     } else if (toggle === 'lag1') {
-      const happinessLag1 = scatterplot({
-        id: 'happiness-lag1',
-        data: happiness.slice(1).map((point, index) => ({ x: point, y: happiness[index] })),
-        label: 'Happiness Ratings',
-        x: { label: 'Happiness (%)', min: 0, max: 100, step: 10 },
-        y: { label: 'Happiness Lag 1(%)', min: 0, max: 100, step: 10 },
-      });
-      const productivityLag1 = scatterplot({
-        id: 'productivity-lag1',
-        data: productivity.slice(1).map((point, index) => ({ x: point, y: productivity[index] })),
-        label: 'Productivity Ratings',
-        x: { label: 'Productivity (%)', min: 0, max: 100, step: 10 },
-        y: { label: 'Productivity Lag 1(%)', min: 0, max: 100, step: 10 },
+      scatterplot({
+        happiness: {
+          id: 'happiness-lag1',
+          data: happiness.slice(1).map((point, index) => ({ x: point, y: happiness[index] })),
+          label: 'Happiness Ratings',
+          x: { label: 'Happiness (%)', min: 0, max: 100, step: 10 },
+          y: { label: 'Happiness Lag 1(%)', min: 0, max: 100, step: 10 },
+        },
+        productivity: {
+          id: 'productivity-lag1',
+          data: productivity.slice(1).map((point, index) => ({ x: point, y: productivity[index] })),
+          label: 'Productivity Ratings',
+          x: { label: 'Productivity (%)', min: 0, max: 100, step: 10 },
+          y: { label: 'Productivity Lag 1(%)', min: 0, max: 100, step: 10 },
+        },
       });
     } else if (toggle === 'difference') {
-      const happinessDifference = scatterplot({
-        id: 'happiness-difference',
-        data: happiness.slice(1).map((point, index) => ({ x: index + 1, y: happiness[index + 1] - happiness[index] })),
-        label: 'Happiness Ratings Differences',
-        x: { label: 'Day', min: 0, max, step },
-        y: { label: 'Happiness Differences T1-T0 (%)', min: -100, max: 100, step: 20 },
-      });
-      const productivityDifference = scatterplot({
-        id: 'productivity-difference',
-        data: productivity.slice(1).map((point, index) => ({ x: index + 1, y: productivity[index + 1] - productivity[index] })),
-        label: 'Productivity Ratings Differences',
-        x: { label: 'Day', min: 0, max, step },
-        y: { label: 'Productivity Differences T1-T0 (%)', min: -100, max: 100, step: 20 },
+      scatterplot({
+        happiness: {
+          id: 'happiness-difference',
+          data: happiness.slice(1).map((point, index) => ({ x: index + 1, y: happiness[index + 1] - happiness[index] })),
+          label: 'Happiness Ratings Differences',
+          x: { label: 'Day', min: 0, max, step },
+          y: { label: 'Happiness Differences T1-T0 (%)', min: -100, max: 100, step: 20 },
+        },
+        productivity: {
+          id: 'productivity-difference',
+          data: productivity.slice(1).map((point, index) => ({ x: index + 1, y: productivity[index + 1] - productivity[index] })),
+          label: 'Productivity Ratings Differences',
+          x: { label: 'Day', min: 0, max, step },
+          y: { label: 'Productivity Differences T1-T0 (%)', min: -100, max: 100, step: 20 },
+        },
       });
     }
   }
 
   componentDidMount() {
+    console.log('rendering: ', this.props.toggle);
     this.renderGraphs();
+    console.log('rendered: ', this.props.toggle);
   }
 
   componentDidUpdate() {
+    console.log('rendering: ', this.props.toggle);
     this.renderGraphs();
-    console.log('toggle: ', this.props.toggle);
+    console.log('rendered: ', this.props.toggle);
   }
 
   render() {
@@ -89,11 +104,11 @@ export default connect(mapStateToProps)(class Statistics extends Component {
       <section className="scatterplots">
         <figure>
           <figcaption>{happinessTitle}</figcaption>
-          <canvas id={happinessId}></canvas>
+          <div id="happiness-canvas"><canvas id={happinessId}></canvas></div>
         </figure>
         <figure>
           <figcaption>{productivityTitle}</figcaption>
-          <canvas id={productivityId}></canvas>
+          <div id="productivity-canvas"><canvas id={productivityId}></canvas></div>
         </figure>
       </section>
     );
