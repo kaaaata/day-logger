@@ -73,7 +73,7 @@ export default connect(mapStateToProps)(class Statistics extends Component {
           productivityTitle={productivityTitle}
           productivityId={productivityId}
         />
-        </section>
+      </section>
     );
   }
 });
