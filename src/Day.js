@@ -7,6 +7,7 @@ import './styles/Day.css';
 
 const mapStateToProps = (state) => ({ 
   activeDay: state.default.activeDay,
+  days: state.default.days,
   activities: state.default.activities,
 });
 const mapDispatchToProps = (dispatch) => ({
@@ -22,12 +23,17 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Day extends Co
   }
 
   render() {
-    const { activeDay, addActivity } = this.props;
+    const { activeDay, days, addActivity } = this.props;
     const activities = this.props.activities.filter(activity => activity.day === activeDay.id);
-
+    
     return (
       <div className="day">
-        <div className="activities-container">
+        <div
+          className="activities-container"
+          style={{
+            backgroundColor: days.filter(day => day.id === activeDay.id)[0].colors.body,
+          }}
+        >
           <div onClick={() => addActivity() }>
             <div className="new-activity">
               <div className="content">

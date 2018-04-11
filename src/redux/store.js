@@ -36,10 +36,12 @@ const reducers = {
           activities: [{ id, activity: '', colors: functions.randomCircleColors(), happiness: 75, productivity: 75, username: state.activeUsername, day: state.activeDay.id }, ...state.activities],
         };
       case 'delete_activity':
+        const index = state.activities.filter(activity => activity.day === state.activeDay.id).map(activity => activity.id).indexOf(action.payload.id);
+        const newActivities = state.activities.filter(activity => activity.day === state.activeDay.id && activity.id !== action.payload.id);
         return { ...state, saved: false,
           activities: state.activities.filter(activity => activity.id !== action.payload.id),
           activeActivity: { id: state.activeActivity.id === action.payload.id
-            ? state.activities.filter(activity => activity.day === state.activeDay.id && activity.id !== action.payload.id)[0].id
+            ? (index >= newActivities.length ? newActivities[index - 1].id : newActivities[index].id)
             : state.activeActivity.id,
           },
         };

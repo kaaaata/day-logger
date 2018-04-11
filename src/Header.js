@@ -30,7 +30,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity ex
   }
 
   render() {
-    const { saved, calculateStatistics } = this.props;
+    const { saved } = this.props;
     const { title } = this.state;
 
     return (
