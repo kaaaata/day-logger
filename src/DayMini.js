@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(class DayMini extends Component {
   render() {
-    const { id, date, colors, happiness, productivity, updateActiveDay, deleteDay } = this.props;
+    const { id, date, colors, updateActiveDay, deleteDay } = this.props;
 
     return (
       <section className="day-mini">

@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(class Activity extends Component {
   render() {
-    const { id, activity, colors, happiness, productivity, activeDay, activities, updateActiveActivity, deleteActivity } = this.props;
+    const { id, activity, colors, activeDay, activities, updateActiveActivity, deleteActivity } = this.props;
 
     return (
       <section
