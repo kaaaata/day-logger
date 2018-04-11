@@ -5,7 +5,8 @@ import shortid from 'shortid';
 const initialState = {
   activeUsername: null,
   activeDay: { id: null },
-  activeActivity: { id: null }, 
+  activeActivity: { id: null },
+  page: 0,
   days: [],
   activities: [],
   statistics: {
@@ -18,6 +19,10 @@ const initialState = {
 const reducers = {
   default: (state = initialState, action) => {
     switch (action.type) {
+      case 'update_page':
+        return { ...state,
+          page: action.payload,
+        };
       case 'add_day':
         const day_id = shortid.generate();
         const activity_id = shortid.generate();

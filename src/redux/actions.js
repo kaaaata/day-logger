@@ -1,3 +1,4 @@
+export const updatePage = (page) => ({ type: 'update_page', payload: page });
 export const addDay = () => ({ type: 'add_day', payload: null });
 export const deleteDay = (day) => ({ type: 'delete_day', payload: day });
 export const addActivity = () => ({ type: 'add_activity', payload: null });

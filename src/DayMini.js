@@ -6,16 +6,19 @@ import BoxMini from './BoxMini';
 import './styles/DayMini.css';
 
 const mapStateToProps = (state) => ({
+  page: state.default.page,
+  days: state.default.days,
   activeDay: state.default.activeDay,
 });
 const mapDispatchToProps = (dispatch) => ({
+  updatePage: (page) => dispatch(actions.updatePage(page)),
   updateActiveDay: (day) => dispatch(actions.updateActiveDay(day)),
   deleteDay: (day) => dispatch(actions.deleteDay(day)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(class DayMini extends Component {
   render() {
-    const { id, date, colors, updateActiveDay, deleteDay } = this.props;
+    const { id, date, colors, page, days, updatePage, updateActiveDay, deleteDay } = this.props;
 
     return (
       <section className="day-mini">
@@ -37,7 +40,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(class DayMini extend
           className="x"
           style={{ backgroundColor: colors.border, border: `solid ${colors.border}` }}
           onClick={(e) => {
-            if (e.target === e.currentTarget) {
+            if (e.target === e.currentTarget && days.length > 1) {
+              if (page * 20 + days.length % 20 === days.length && days.length % 20 === 1) updatePage(page - 1);
               deleteDay({ id });
             }
           }}

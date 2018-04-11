@@ -11,6 +11,8 @@ const app = express();
 // app.use(express.static(__dirname + '/../build'));
 // app.use(favicon(__dirname + '/../build/favicon.ico'));
 // // note: google chrome can't display local favicons
+// process.env.NODE_ENV = 'production';
+if (process.env.NODE_ENV === 'production') app.use(express.static(__dirname + '/../build'));
 app.use(bodyParser.json());
 app.use((req, res, next) => {
   console.log(`${req.path}, ${req.method}, ${req.status}, ${JSON.stringify(req.body)}`);

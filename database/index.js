@@ -1,12 +1,13 @@
 const knex = require('./db');
+const shortid = require('shortid');
 
 // DEVELOPMENT
+const colors = JSON.stringify({ input: 'rgba(200, 200, 200, 0.4)', body: 'rgba(200, 200, 200, 0.6)', border: 'rgba(200, 200, 200, 0.8)' });
 const addDummyData = async() => {
   const logins = [
     { username: 'cat', password: 'cat' },
     { username: 'dog', password: 'dog' },
   ];
-  const colors = JSON.stringify({ input: 'rgba(200, 200, 200, 0.4)', body: 'rgba(200, 200, 200, 0.6)', border: 'rgba(200, 200, 200, 0.8)' });
   const days = [
     { id: '1', date: 'March 1, 2018', colors, happiness: 75, productivity: 75, username: 'cat' },
     { id: '2', date: 'March 2, 2018', colors, happiness: 75, productivity: 75, username: 'cat' },
@@ -37,7 +38,12 @@ const getAll = async() => {
 // LOGIN
 const usernameAvailable = async(username) => (await knex('logins').where({ username }).select()).length === 0;
 const validLogin = async(username, password) => (await knex('logins').where({ username, password }).select()).length === 1;
-const newLogin = async(username, password) => await knex('logins').insert({ username, password });
+const newLogin = async(username, password) => {
+  await knex('logins').insert({ username, password });
+  const day_id = shortid.generate();
+  await knex('days').insert({ id: day_id, date: 'Sample Day', colors, happiness: 75, productivity: 75, username });
+  await knex('activities').insert({ id: shortid.generate(), activity: 'Sample activity', colors, happiness: 75, productivity: 75, username, day: day_id });
+};
 
 // DAYS
 const getDaysByUsername = async(username) => await knex('days').where({ username }).select();
