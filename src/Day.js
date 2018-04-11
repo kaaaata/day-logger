@@ -27,8 +27,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Day extends Co
     const activities = this.props.activities.filter(activity => activity.day === activeDay.id);
     
     return (
-      <div className="day">
-        <div
+      <section className="day">
+        <article
           className="activities-container"
           style={{
             backgroundColor: days.filter(day => day.id === activeDay.id)[0].colors.body,
@@ -44,14 +44,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Day extends Co
           {activities.map((activity, index) => (
             <Activity key={index} {...activity} />
           ))}
-          {!activities.length && (
-            <div className="no-activities">I've done nothing today yet.</div>
-          )}
-        </div>
-        <div className="new-activity">
+        </article>
+        <article className="new-activity">
           <NewActivity />
-        </div>
-      </div>
+        </article>
+      </section>
     );
   }
 });
