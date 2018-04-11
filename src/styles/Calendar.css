@@ -1,13 +1,21 @@
 .calendar {
-  display: flex;
-  flex-wrap: wrap; }
-  .calendar .new-day {
-    width: 125px;
-    height: 125px;
-    border-radius: 50%;
-    margin: 0 0 25px 25px;
-    background-color: rgba(230, 230, 230, 0.6);
-    border: solid rgba(230, 230, 230, 0.8);
-    cursor: pointer; }
-    .calendar .new-day .content {
-      padding-top: 35px; }
+  display: flex; }
+  .calendar .nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    margin-right: 10px; }
+    .calendar .nav button {
+      margin-bottom: 10px; }
+  .calendar .days-container {
+    overflow: hidden; }
+    .calendar .days-container .slideshow-container {
+      display: flex;
+      transition: all 1s ease-out; }
+      .calendar .days-container .slideshow-container .twenty-four-days {
+        width: 815px;
+        border-radius: 25px;
+        padding: 30px 0 0 15px;
+        background-color: rgba(255, 255, 255, 0.5);
+        margin-right: 50px; }

@@ -1,4 +1,6 @@
 .day-mini {
+  display: inline-block;
+  float: left;
   width: 125px;
   height: 125px;
   border-radius: 50%;
