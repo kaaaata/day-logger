@@ -30,21 +30,28 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Days extends C
     return (
       <section className="calendar">
         <section className="nav">
-          <button className="new-day" onClick={() => addDay()}>
-            +New Day
-          </button>
-          <button className="prev" onClick={() => this.setState({ page: page === 0 ? 0 : page - 1 })}>
-            Prev
-          </button>
-          <button className="next" onClick={() => this.setState({ page: page === max - 1 ? max - 1 : page + 1 })}>
-            Next
-          </button>
-          <button className="first" onClick={() => this.setState({ page: 0 })}>
-            First
-          </button>
-          <button className="last" onClick={() => this.setState({ page: max - 1 })}>
-            Last
-          </button>
+          <section className="top">
+            <button className="new-day" onClick={() => addDay()}>
+              +New Day
+            </button>
+            <button onClick={() => this.setState({ page: page === 0 ? 0 : page - 1 })}>
+              Prev
+            </button>
+            <button onClick={() => this.setState({ page: page === max - 1 ? max - 1 : page + 1 })}>
+              Next
+            </button>
+            <button onClick={() => this.setState({ page: 0 })}>
+              First
+            </button>
+            <button onClick={() => this.setState({ page: max - 1 })}>
+              Last
+            </button>
+          </section>
+          <section className="bottom">
+            <button>
+              Page: {page + 1} / {max}
+            </button>
+          </section>
         </section>
         <article className="days-container">
           <div

@@ -1,13 +1,22 @@
 .calendar {
   display: flex; }
   .calendar .nav {
+    width: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 200px;
+    justify-content: space-between;
     margin-right: 10px; }
-    .calendar .nav button {
-      margin-bottom: 10px; }
+    .calendar .nav .top {
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      .calendar .nav .top button {
+        margin-bottom: 10px; }
+    .calendar .nav .bottom button {
+      cursor: default; }
+      .calendar .nav .bottom button:hover {
+        background-color: rgba(255, 255, 255, 0.5); }
   .calendar .days-container {
     overflow: hidden; }
     .calendar .days-container .slideshow-container {
