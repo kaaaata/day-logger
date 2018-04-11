@@ -20,10 +20,6 @@ export default connect(mapStateToProps)(class Statistics extends Component {
     };
   }
 
-  componentWillUpdate() {
-    console.log('statistics component updated');
-  }
-
   handleDropdown(e) {
     const { statistics } = this.props;
 
