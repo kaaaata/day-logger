@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as actions from './redux/actions';
 import Scatterplots from './Scatterplots';
 import './styles/Statistics.css';
 
 const mapStateToProps = (state) => ({
   statistics: state.default.statistics,
 });
+const mapDispatchToProps = (dispatch) => ({
+  calculateStatistics: () => dispatch(actions.calculateStatistics()),
+});
 
-export default connect(mapStateToProps)(class Statistics extends Component {
+export default connect(mapStateToProps, mapDispatchToProps)(class Statistics extends Component {
   constructor(props) {
     super(props);
     const { statistics } = this.props;
@@ -18,6 +22,10 @@ export default connect(mapStateToProps)(class Statistics extends Component {
       productivityTitle: `Your Productivity (Average ${statistics.productivity.average})`,
       productivityId: 'productivity-raw',
     };
+  }
+
+  componentWillMount() {
+    this.props.calculateStatistics();
   }
 
   handleDropdown(e) {

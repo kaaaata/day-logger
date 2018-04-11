@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   addDay: () => dispatch(actions.addDay()),
+  calculateStatistics: () => dispatch(actions.calculateStatistics()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(class Days extends Component {
@@ -18,6 +19,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Days extends C
     this.state = {
       page: 0,
     };
+  }
+
+  componentWillMount() {
+    this.props.calculateStatistics();
   }
 
   render() {

@@ -13,7 +13,6 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   save: () => dispatch(actions.save()),
-  calculateStatistics: () => dispatch(actions.calculateStatistics()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity extends Component {
@@ -46,10 +45,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity ex
         </article>
         <article>
           <Link className="link" to="/statistics">
-            <button onClick={() => {
-              this.setState({ title: 'Statistics' });
-              calculateStatistics();
-            }}>Statistics</button>
+            <button onClick={() => this.setState({ title: 'Statistics' })}>Statistics</button>
           </Link>
         </article>
         <article>
