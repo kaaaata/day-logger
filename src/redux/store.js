@@ -90,6 +90,12 @@ const reducers = {
               productivity: ~~(activities.map(activity => activity.productivity).reduce((a, b) => a + b) / activities.length) };
           }),
           statistics: {
+            figures: {
+              happy: state.days.filter(day => day.happiness <= 75).length,
+              sad: state.days.filter(day => day.happiness > 75).length,
+              productive: state.days.filter(day => day.productivity >= 75).length,
+              lazy: state.days.filter(day => day.productivity < 75).length,
+            },
             happiness: {
               raw: state.days.map(day => day.happiness),
               percentages: state.days.map(day => ~~((150 - day.happiness) * 100 / 150)),

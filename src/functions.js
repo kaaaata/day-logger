@@ -11,6 +11,46 @@ export const randomCircleColors = () => {
   };
 };
 
+export const donutChart = (params) => {
+  // uses Chart.js to generate a doughnut chart given a short list of parameters
+
+  /*
+  params.happiness & params.productivity = {
+    id: 'happiness-XXXXXX',
+    data: [...],
+    labels: [...],
+  };
+  */
+
+  let happinessChart;
+  let productivityChart;
+
+  [happinessChart, productivityChart].forEach((chart, index) => {
+    const { id, data, labels } = index === 0 ? params.happiness : params.productivity;
+    chart = new Chart(document.getElementById(id).getContext('2d'), {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)', 'rgba(4, 143, 206, 0.2)',
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)', 'rgba(4, 143, 206, 1)',
+          ],
+          hoverBorderWidth: [
+            3, 3,
+          ]
+        }],
+        labels,
+      },
+      options: {
+        //
+      },
+    });
+  });
+};
+
 export const scatterplot = (params) => {
   // uses Chart.js to generate a scatterplot given a short list of parameters
 
@@ -54,7 +94,6 @@ export const scatterplot = (params) => {
         }]
       },
       options: {
-        responsive: false,
         scales: {
           xAxes: [{
             scaleLabel: {

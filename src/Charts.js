@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { scatterplot } from './functions';
-import './styles/Scatterplots.css';
+import { donutChart, scatterplot } from './functions';
+import './styles/Charts.css';
 
 const mapStateToProps = (state) => ({
   days: state.default.days,
@@ -31,7 +31,20 @@ export default connect(mapStateToProps)(class Statistics extends Component {
     document.getElementById('productivity-canvas').innerHTML = '&nbsp;';
     document.getElementById('productivity-canvas').innerHTML = `<canvas id=${this.props.productivityId} width="750" height="250"></canvas>`;
     
-    if (toggle === 'raw') {
+    if (toggle === 'donut') {
+      donutChart({
+        happiness: {
+          id: 'happiness-donut',
+          data: [statistics.figures.happy, statistics.figures.sad],
+          labels: ['Happy Days', 'Sad Days'],
+        },
+        productivity: {
+          id: 'productivity-donut',
+          data: [statistics.figures.productive, statistics.figures.lazy],
+          labels: ['Productive Days', 'Lazy Days'],
+        },
+      });
+    } else if (toggle === 'raw') {
       scatterplot({
         happiness: {
           id: 'happiness-raw',

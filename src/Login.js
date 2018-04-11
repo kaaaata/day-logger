@@ -13,8 +13,8 @@ export default connect(null, mapDispatchToProps)(class Login extends Component {
   constructor() {
     super();
     this.state = {
-      username: '',
-      password: '',
+      username: 'cat',
+      password: 'cat',
       redirect: false,
     };
   }

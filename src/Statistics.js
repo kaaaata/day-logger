@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
-import Scatterplots from './Scatterplots';
+import Charts from './Charts';
 import './styles/Statistics.css';
 
 const mapStateToProps = (state) => ({
@@ -16,11 +16,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Statistics ext
     super(props);
     const { statistics } = this.props;
     this.state = {
-      toggle: 'raw',
-      happinessTitle: `Your Happiness (Average ${statistics.happiness.average})`,
-      happinessId: 'happiness-raw',
-      productivityTitle: `Your Productivity (Average ${statistics.productivity.average})`,
-      productivityId: 'productivity-raw',
+      toggle: 'donut',
+      happinessTitle: `Happy Days vs. Sad Days (${statistics.figures.happy} - ${statistics.figures.sad})`,
+      happinessId: 'happiness-donut',
+      productivityTitle: `Productive Days vs. Lazy Days (${statistics.figures.productive} - ${statistics.figures.lazy})`,
+      productivityId: 'productivity-donut',
     };
   }
 
@@ -31,7 +31,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Statistics ext
   handleDropdown(e) {
     const { statistics } = this.props;
 
-    if (e.target.value === 'raw') {
+    if (e.target.value === 'donut') {
+      this.setState({
+        toggle: e.target.value,
+        happinessTitle: `Happy Days vs. Sad Days (${statistics.figures.happy} - ${statistics.figures.sad})`,
+        happinessId: 'happiness-donut',
+        productivityTitle: `Productive Days vs. Lazy Days (${statistics.figures.productive} - ${statistics.figures.lazy})`,
+        productivityId: 'productivity-donut',
+      });
+    } else if (e.target.value === 'raw') {
       this.setState({
         toggle: e.target.value,
         happinessTitle: `Your Happiness (Average ${statistics.happiness.average})`,
@@ -65,16 +73,25 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Statistics ext
       <section className="statistics">
         <article className="dropdown">
           Data Type: <select onChange={(e) => this.handleDropdown(e)}>
-            {[
-              { analysis: 'Raw', toggle: 'raw' },
-              { analysis: 'Lag 1', toggle: 'lag1' },
-              { analysis: 'Differenced', toggle: 'difference' },
-            ].map(dropdown => (
-              <option key={dropdown.analysis} value={dropdown.toggle}>{dropdown.analysis}</option>
-            ))}
+          <optgroup label="Basic Stats">
+              {[
+                { analysis: 'Pie Chart', toggle: 'donut' },
+                { analysis: 'Scatterplot', toggle: 'raw' },
+              ].map(dropdown => (
+                <option key={dropdown.analysis} value={dropdown.toggle}>{dropdown.analysis}</option>
+              ))}
+            </optgroup>
+            <optgroup label="Time Series">
+              {[
+                { analysis: '1st Lag', toggle: 'lag1' },
+                { analysis: '1st Difference', toggle: 'difference' },
+              ].map(dropdown => (
+                <option key={dropdown.analysis} value={dropdown.toggle}>{dropdown.analysis}</option>
+              ))}
+            </optgroup>
           </select>
         </article>
-        <Scatterplots
+        <Charts
           toggle={toggle}
           happinessTitle={happinessTitle}
           happinessId={happinessId}
