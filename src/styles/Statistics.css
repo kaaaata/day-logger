@@ -2,7 +2,8 @@
   text-align: center;
   display: grid;
   grid-template-columns: auto auto auto auto auto auto auto;
-  grid-gap: 10px; }
+  grid-gap: 10px;
+  margin-left: 10px; }
   .statistics .dropdown {
     grid-column: 1/span 1;
     font-size: 24px;

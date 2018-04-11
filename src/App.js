@@ -19,7 +19,8 @@ export default withRouter(connect(mapStateToProps)(class App extends Component {
     const { days } = this.props;
 
     return (
-      <div className="app">
+      <main className="app">
+        <div className="filter"></div>
         <Switch>
           <Route exact path="/" render={() => <Login />} />
           <Route exact path="/days" render={() => <div><Header /><Calendar /></div>} />
@@ -28,7 +29,7 @@ export default withRouter(connect(mapStateToProps)(class App extends Component {
             <Route key={index} exact path={"/day/" + day.id} render={() => <div><Header /><Day {...day} /></div>} />
           ))}
         </Switch>
-      </div>
+      </main>
     );
   }
 }));

@@ -1,3 +1,11 @@
+%absolute-position-center
+  position: absolute
+  top: 0
+  left: 0
+  bottom: 0
+  right: 0
+  margin: 0 auto
+
 * 
   margin: 0
   padding: 0
@@ -26,8 +34,16 @@ button
 .link
   cursor: pointer
 .app
+  @extend %absolute-position-center
+  width: 1000px
   font-family: 'Noto Sans', sans-serif
   text-align: center
   cursor: default
+#filter
+  @extend %absolute-position-center
+  z-index: -1
   width: 1000px
-  margin: 0 auto
+  height: 100%
+  border-left: solid rgba(180, 220, 220, 0.75)
+  border-right: solid rgba(180, 220, 220, 0.75)
+  background-color: rgba(0, 0, 0, 0.1)
