@@ -1,33 +1,30 @@
+%absolute-centered-circle
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  border-radius: 50%
+  
 .meter
   position: relative
   .title
     margin: 15px auto
     font-size: 28px
   .click-area
-    position: absolute
+    @extend %absolute-centered-circle
     width: 200px
     height: 200px
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
-    border-radius: 50%
     margin: 65px auto
     border: solid black
     opacity: 0
     z-index: 10
     cursor: pointer
   .meter
-    position: absolute
+    @extend %absolute-centered-circle
     width: 200px
     height: 200px
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
-    border-radius: 50%
     margin: 65px auto
-    border-radius: 50%
     background-color: transparent
     overflow: hidden
     transition: all 0.6s ease-out
@@ -37,11 +34,6 @@
       height: 200px
       transition: all 0.6s ease-out
   .percentage
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
-    border-radius: 50%
+    @extend %absolute-centered-circle
     margin: 125px auto
     font-size: 48px
