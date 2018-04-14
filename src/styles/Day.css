@@ -1,31 +1,47 @@
 .day {
-  margin: 0 auto; }
-  .day .activities-container {
-    height: 185px;
+  margin: 0 auto;
+  display: flex; }
+  .day .nav {
+    margin: 0 10px;
     display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
+    flex-direction: column; }
+    .day .nav button {
+      margin-bottom: 10px; }
+  .day .day-content {
+    flex-grow: 1;
+    margin-right: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 25px; }
-    .day .activities-container .new-activity {
-      width: 125px;
-      height: 125px;
-      border-radius: 50%;
-      margin: 25px 0 25px 25px;
-      flex: 0 0 auto;
-      background-color: rgba(255, 255, 255, 0.5);
-      border: solid rgba(255, 255, 255, 0.75);
-      cursor: pointer; }
-      .day .activities-container .new-activity .content {
-        padding-top: 35px; }
-  .day .no-activities {
-    margin-left: 50px;
-    height: 175px;
-    line-height: 175px;
-    font-size: 72px;
-    color: #aac8aa; }
-  .day .new-activity {
-    text-align: center; }
-  .day .done {
-    width: 100px;
-    height: 100px;
-    border-radius: 15px; }
+    .day .day-content input {
+      text-align: center;
+      border: none;
+      background-color: transparent;
+      margin: 25px 25px 0 25px;
+      font-size: 48px; }
+    .day .day-content .activities-container {
+      height: 185px;
+      width: 95%;
+      margin: 25px auto 0 auto;
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      border-radius: 25px; }
+    .day .day-content .bottom {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      grid-gap: auto;
+      margin: 15px; }
+      .day .day-content .bottom .activity {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        margin: 25px auto;
+        text-align: center;
+        transition: all 0.6s ease-out;
+        cursor: default; }
+        .day .day-content .bottom .activity input {
+          width: 250px;
+          text-align: center;
+          background-color: transparent;
+          margin: 75px auto 0 auto;
+          font-size: 36px; }

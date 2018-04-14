@@ -39,7 +39,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NewActivity ex
           <u>{title}</u>
         </article>
         <article>
-          <Link className="link" to="/days">
+          <Link className="link" to="/calendar">
             <button onClick={() => this.setState({ title: 'Calendar' })}>Calendar</button>
           </Link>
         </article>

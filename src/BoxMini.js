@@ -10,17 +10,13 @@ export default class BoxMini extends Component {
         className="box-mini"
         style={{ backgroundColor: colors.body, border: `solid ${colors.border}` }}
       >
-        {/* <article
-          className="dart"
-          style={{ left: ~~(productivity / 4), top: ~~(happiness / 4), backgroundColor: 'black' }}
-        /> */}
         <article
           className="emoji"
           style={{
             backgroundImage: `url(${require(`./assets/${
-              happiness <= 75 // '<=' instead of '<' for optimism - defaults to 'smiling'
-                ? (productivity <= 75 ? 'smiling' : 'dizzy')
-                : (productivity <= 75 ? 'zany' : 'crying')
+              happiness >= 50 // '<=' instead of '<' for optimism - defaults to 'smiling'
+                ? (productivity >= 50 ? 'smiling' : 'zany')
+                : (productivity >= 50 ? 'dizzy' : 'crying')
             }.png`)})`,
           }}
         />

@@ -66,7 +66,7 @@ export default connect(null, mapDispatchToProps)(class Login extends Component {
             <article>
               <button type="button" onClick={() => this.newLogin()}>New Login</button>
               {this.state.redirect
-                ? <Redirect to="/days" />
+                ? <Redirect to="/calendar" />
                 : <button type="submit">Login</button>
               }
             </article>

@@ -18,8 +18,8 @@ export default connect(mapStateToProps)(class Statistics extends Component {
 
   renderGraphs() {
     const { toggle, days, statistics } = this.props;
-    const happiness = statistics.happiness.percentages;
-    const productivity = statistics.productivity.percentages;
+    const happiness = statistics.happiness.raw;
+    const productivity = statistics.productivity.raw;
 
     // dynamic x-axis max value and step size depending on number of days
     const max = this.nextMultipleOf10(days.length);

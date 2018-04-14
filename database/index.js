@@ -9,20 +9,20 @@ const addDummyData = async() => {
     { username: 'dog', password: 'dog' },
   ];
   const days = [
-    { id: '1', date: 'March 1, 2018', colors, happiness: 75, productivity: 75, username: 'cat' },
-    { id: '2', date: 'March 2, 2018', colors, happiness: 75, productivity: 75, username: 'cat' },
-    { id: '3', date: 'March 3, 2018', colors, happiness: 75, productivity: 75, username: 'cat' },
+    { id: '1', date: 'March 1, 2018', colors, happiness: 50, productivity: 50, username: 'cat' },
+    { id: '2', date: 'March 2, 2018', colors, happiness: 50, productivity: 50, username: 'cat' },
+    { id: '3', date: 'March 3, 2018', colors, happiness: 50, productivity: 50, username: 'cat' },
   ];
   const activities = [
-    { id: '4', activity: 'learn redux', colors, happiness: 75, productivity: 75, username: 'cat', day: '1' },
-    { id: '5', activity: 'work out', colors, happiness: 75, productivity: 75, username: 'cat', day: '1' },
-    { id: '6', activity: 'play dota', colors, happiness: 75, productivity: 75, username: 'cat', day: '1' },
-    { id: '7', activity: 'learn redux', colors, happiness: 75, productivity: 75, username: 'cat', day: '2' },
-    { id: '8', activity: 'work out', colors, happiness: 75, productivity: 75, username: 'cat', day: '2' },
-    { id: '9', activity: 'play dota', colors, happiness: 75, productivity: 75, username: 'cat', day: '2' },
-    { id: '10', activity: 'learn redux', colors, happiness: 75, productivity: 75, username: 'cat', day: '3' },
-    { id: '11', activity: 'work out', colors, happiness: 75, productivity: 75, username: 'cat', day: '3' },
-    { id: '12', activity: 'play dota', colors, happiness: 75, productivity: 75, username: 'cat', day: '3' },
+    { id: '4', activity: 'learn redux', colors, happiness: 50, productivity: 50, username: 'cat', day: '1' },
+    { id: '5', activity: 'work out', colors, happiness: 50, productivity: 50, username: 'cat', day: '1' },
+    { id: '6', activity: 'play dota', colors, happiness: 50, productivity: 50, username: 'cat', day: '1' },
+    { id: '7', activity: 'learn redux', colors, happiness: 50, productivity: 50, username: 'cat', day: '2' },
+    { id: '8', activity: 'work out', colors, happiness: 50, productivity: 50, username: 'cat', day: '2' },
+    { id: '9', activity: 'play dota', colors, happiness: 50, productivity: 50, username: 'cat', day: '2' },
+    { id: '10', activity: 'learn redux', colors, happiness: 50, productivity: 50, username: 'cat', day: '3' },
+    { id: '11', activity: 'work out', colors, happiness: 50, productivity: 50, username: 'cat', day: '3' },
+    { id: '12', activity: 'play dota', colors, happiness: 50, productivity: 50, username: 'cat', day: '3' },
   ];
   await knex('logins').insert(logins);
   await knex('days').insert(days);
@@ -41,8 +41,8 @@ const validLogin = async(username, password) => (await knex('logins').where({ us
 const newLogin = async(username, password) => {
   await knex('logins').insert({ username, password });
   const day_id = shortid.generate();
-  await knex('days').insert({ id: day_id, date: 'Sample Day', colors, happiness: 75, productivity: 75, username });
-  await knex('activities').insert({ id: shortid.generate(), activity: 'Sample activity', colors, happiness: 75, productivity: 75, username, day: day_id });
+  await knex('days').insert({ id: day_id, date: 'Sample Day', colors, happiness: 50, productivity: 50, username });
+  await knex('activities').insert({ id: shortid.generate(), activity: 'Sample activity', colors, happiness: 50, productivity: 50, username, day: day_id });
 };
 
 // DAYS

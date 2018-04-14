@@ -27,8 +27,8 @@ const reducers = {
         const day_id = shortid.generate();
         const activity_id = shortid.generate();
         return { ...state, saved: false, 
-          days: [{ id: day_id, date: '', colors: functions.randomCircleColors(), happiness: 75, productivity: 75, username: state.activeUsername }, ...state.days],
-          activities: [{ id: activity_id, activity: '', colors: functions.randomCircleColors(), happiness: 75, productivity: 75, username: state.activeUsername, day: day_id }, ...state.activities],
+          days: [{ id: day_id, date: '', colors: functions.randomCircleColors(), happiness: 50, productivity: 50, username: state.activeUsername }, ...state.days],
+          activities: [{ id: activity_id, activity: '', colors: functions.randomCircleColors(), happiness: 50, productivity: 50, username: state.activeUsername, day: day_id }, ...state.activities],
         };
       case 'delete_day':
         return { ...state, saved: false,
@@ -38,7 +38,7 @@ const reducers = {
         const id = shortid.generate();
         return { ...state, saved: false,
           activeActivity: { id },
-          activities: [{ id, activity: '', colors: functions.randomCircleColors(), happiness: 75, productivity: 75, username: state.activeUsername, day: state.activeDay.id }, ...state.activities],
+          activities: [{ id, activity: '', colors: functions.randomCircleColors(), happiness: 50, productivity: 50, username: state.activeUsername, day: state.activeDay.id }, ...state.activities],
         };
       case 'delete_activity':
         const index = state.activities.filter(activity => activity.day === state.activeDay.id).map(activity => activity.id).indexOf(action.payload.id);
@@ -70,6 +70,7 @@ const reducers = {
       case 'update_active_day':
         return { ...state,
           activeDay: { id: action.payload.id },
+          activeActivity: { id: state.activities.filter(activity => activity.day === action.payload.id)[0].id },
         };
       case 'update_active_activity':
         return { ...state,
@@ -86,27 +87,25 @@ const reducers = {
           days: state.days.map(day => {
             const activities = state.activities.filter(activity => activity.day === day.id);
             return { ...day, 
-              happiness: ~~(activities.map(activity => activity.happiness).reduce((a, b) => a + b) / activities.length),
-              productivity: ~~(activities.map(activity => activity.productivity).reduce((a, b) => a + b) / activities.length) };
+              happiness: Math.ceil(activities.map(activity => activity.happiness).reduce((a, b) => a + b) / activities.length),
+              productivity: Math.ceil(activities.map(activity => activity.productivity).reduce((a, b) => a + b) / activities.length) };
           }),
           statistics: {
             figures: {
-              happy: state.days.filter(day => day.happiness <= 75).length,
-              sad: state.days.filter(day => day.happiness > 75).length,
-              productive: state.days.filter(day => day.productivity >= 75).length,
-              lazy: state.days.filter(day => day.productivity < 75).length,
+              happy: state.days.filter(day => day.happiness >= 50).length,
+              sad: state.days.filter(day => day.happiness < 50).length,
+              productive: state.days.filter(day => day.productivity >= 50).length,
+              lazy: state.days.filter(day => day.productivity < 50).length,
             },
             happiness: {
               raw: state.days.map(day => day.happiness),
-              percentages: state.days.map(day => ~~((150 - day.happiness) * 100 / 150)),
-              average: ~~((150 - state.days.map(day => day.happiness).reduce((a, b) => a + b) / state.days.length) * 100 / 150) + '%',
-              activities: state.activities.map(activity => ~~((150 - activity.happiness) * 100 / 150)),
+              average: Math.ceil(state.days.map(day => day.happiness).reduce((a, b) => a + b) / state.days.length) + '%',
+              activities: state.activities.map(activity => activity.happiness),
             },
             productivity: {
               raw: state.days.map(day => day.productivity),
-              percentages: state.days.map(day => ~~((150 - day.productivity) * 100 / 150)),
-              average: ~~((150 - state.days.map(day => day.productivity).reduce((a, b) => a + b) / state.days.length) * 100 / 150) + '%',
-              activities: state.activities.map(activity => ~~((150 - activity.productivity) * 100 / 150)),
+              average: Math.ceil(state.days.map(day => day.productivity).reduce((a, b) => a + b) / state.days.length) + '%',
+              activities: state.activities.map(activity => activity.productivity),
             }
           },
         };

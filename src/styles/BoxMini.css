@@ -3,13 +3,6 @@
   height: 38px;
   border-radius: 15px;
   margin: 10px auto; }
-  .box-mini .dart {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    position: relative;
-    transition: all 0.5s ease-out;
-    z-index: 1; }
   .box-mini .emoji {
     width: 30px;
     height: 30px;
