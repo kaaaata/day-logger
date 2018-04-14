@@ -1,11 +1,10 @@
 {
   "name": "day-logger",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Log what you did each day, tracking your happiness and productivity",
   "author": "Catherine Han",
   "license": "",
   "private": true,
-  "proxy": "http://localhost:3001",
   "scripts": {
     "server-dev": "nodemon --inspect server/index.js",
     "sass-dev": "sass --watch src:src/styles --sourcemap=none",

@@ -13,16 +13,16 @@ export default connect(null, mapDispatchToProps)(class Login extends Component {
   constructor() {
     super();
     this.state = {
-      username: 'cat',
-      password: 'cat',
+      username: '',
+      password: '',
       redirect: false,
     };
   }
 
   async newLogin() {
     const username = prompt('New Username: ');
-    const usernameAvailable = (await axios.get(`/usernameAvailable/${username}`)).data.output;
     if (username === '') return alert(`Sorry, "${username}" is an invalid username. `);
+    const usernameAvailable = (await axios.get(`/usernameAvailable/${username}`)).data.output;
     if (!usernameAvailable) return alert(`Sorry, "${username}" is already taken. `);
     const password = prompt(`Password for ${username}: `);
     if (password === '') return alert(`Sorry, "${password}" is an invalid password. `);
