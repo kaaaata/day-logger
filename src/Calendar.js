@@ -36,21 +36,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Days extends C
             }}>
               +New Day
             </button>
-            <button onClick={() => updatePage(page === 0 ? 0 : page - 1)}>
-              Prev
-            </button>
-            <button onClick={() => updatePage(page === max - 1 ? max - 1 : page + 1)}>
-              Next
-            </button>
-            <button onClick={() => updatePage(0)}>
-              First
-            </button>
-            <button onClick={() => updatePage(max - 1)}>
-              Last
-            </button>
           </section>
           <section className="bottom">
-            <button>
+            <div className="page-nav">
+              <button className="prev" onClick={() => updatePage(page === 0 ? 0 : page - 1)}>{'<'}</button>
+              <button className="next" onClick={() => updatePage(page === max - 1 ? max - 1 : page + 1)}>{'>'}</button>
+            </div>
+            <button className="page-display">
               Page: {page + 1} / {max}
             </button>
           </section>
@@ -63,7 +55,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Days extends C
               marginLeft: page * -879 + 'px',
             }}
           >
-            {_.chunk(days.concat(Array(20).fill(null)), 20).map((chunk, index) => (
+            {_.chunk(days.concat(Array(20).fill(null)), 20).map((chunk, index) => ( // add blanks to retain flex styling
               <section key={index} className="twenty-days">
                 {chunk.map((day, index) => (
                   <div key={index}>
