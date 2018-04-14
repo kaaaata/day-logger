@@ -23,10 +23,11 @@
       background-color: transparent; }
       .calendar .nav .bottom .page-nav .prev {
         border-radius: 15px 0 0 15px;
-        width: 62.5px; }
+        width: 60px;
+        margin-right: 5px; }
       .calendar .nav .bottom .page-nav .next {
         border-radius: 0 15px 15px 0;
-        width: 62.5px; }
+        width: 60px; }
     .calendar .nav .bottom .page-display {
       cursor: default; }
       .calendar .nav .bottom .page-display:hover {
